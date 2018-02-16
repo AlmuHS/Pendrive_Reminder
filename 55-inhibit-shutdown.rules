@@ -1,0 +1,11 @@
+polkit.addRule(function(action, subject) {
+    if ((action.id == "org.freedesktop.consolekit.system.stop") {
+	try{	
+		polkit.spawn(["/usr/bin/detect_pendrive.sh"]);        
+		return polkit.Result.YES;
+
+	}catch(error){
+		return polkit.Result.NO;
+	}
+    }
+});

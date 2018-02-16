@@ -1,0 +1,1 @@
+KERNEL=="sd*[!0-9]|sr*", ENV{ID_SERIAL}!="?*", SUBSYSTEMS=="usb", RUN+="/usr/bin/usbdevinserted"
