@@ -1,11 +1,15 @@
 polkit.addRule(function(action, subject) {
-    if ((action.id == "org.freedesktop.consolekit.system.stop") || action.id.indexOf("org.freedesktop.login1.power-off") == 0) {
-	try{	
-		polkit.spawn(["/usr/bin/detect_pendrive.sh", subject.user]);        
-		return polkit.Result.YES;
+    if (action.id == "org.freedesktop.consolekit.system.stop" ||
+ 		action.id.indexOf("org.freedesktop.login1.power-off") == 0) || 
+		action.id == "org.xfce.session.xfsm-shutdown-helper")  
+	{
+	
+		try{	
+			polkit.spawn(["/usr/bin/detect_pendrive.sh", subject.user]);        
+			return polkit.Result.YES;
 
-	}catch(error){
-		return polkit.Result.NO;
-	}
+		}catch(error){
+			return polkit.Result.NO;
+		}
     }
 });
