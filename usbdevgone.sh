@@ -1,12 +1,18 @@
 #!/bin/bash
 
-devname=$1
+#USB Device identifier
+devpath=$1 
 
-echo $devname > /tmp/devname		
+#Path to USB identifiers list file
+filepath="/tmp/usbdevinfo"
 
-sed -i "%|${devname}.*|%d" /tmp/usbdevinfo
+#if the USB's id is in the file, remove it
+sed -in "\%${devpath}%d" $filepath
 
-if test $(wc -l /tmp/usbdevinfo) -eq 0 then
-	rm /tmp/usbdevinfo
+#After remove the id, check if file is empty
+if ! test -s $filepath  
+then
+	#if file is empty, remove it
+	rm $filepath
 fi
 
