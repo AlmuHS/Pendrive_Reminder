@@ -8,4 +8,4 @@ cp 1?-usb*.rules /etc/udev/rules.d/
 udevadm control --reload-rules
 
 #Copy polkit rules
-cp 10-*shutdown.rules /etc/polkit-1/rules.d/
+cp 10-*shutdown.rules /usr/share/polkit-1/rules.d/

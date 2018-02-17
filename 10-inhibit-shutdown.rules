@@ -1,5 +1,5 @@
 polkit.addRule(function(action, subject) {
-    if ((action.id == "org.freedesktop.consolekit.system.stop" || action.id.indexOf("org.freedesktop.login1.power-off") == 0) {
+    if ((action.id == "org.freedesktop.consolekit.system.stop") || action.id.indexOf("org.freedesktop.login1.power-off") == 0) {
 	try{	
 		polkit.spawn(["/usr/bin/detect_pendrive.sh", subject.user]);        
 		return polkit.Result.YES;

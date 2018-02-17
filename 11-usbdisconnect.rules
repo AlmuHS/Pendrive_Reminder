@@ -1,1 +1,2 @@
 SUBSYSTEM=="usb", ACTION=="unbind", RUN+="/usr/bin/usbdevgone.sh $devpath"
+SUBSYSTEM=="usb", ACTION=="remove", RUN+="/usr/bin/usbdevgone.sh $devpath"
