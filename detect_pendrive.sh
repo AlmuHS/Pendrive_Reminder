@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if test -f "/tmp/usbdevinfo" 
+if ! test -e "/tmp/usbdevinfo" 
 then
-	exit 1
-else
 	exit 0
+else
+	exit 1
 fi
