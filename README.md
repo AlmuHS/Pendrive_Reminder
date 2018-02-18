@@ -50,3 +50,17 @@ El comportamiento de la aplicación dependerá de la versión de polkit usada po
 - Si la versión es < 0.106, la opción de apagado permanecerá al conectar el pendrive, pero al pulsarla no se realizará ninguna acción,
 
 En ambos casos, el sistema volverá a la normalidad, desbloqueando el apagado, al desconectar el pendrive
+
+## Instalación
+
+Para instalar la aplicación, únicamente hay que descargar el repositorio y ejecutar el script de instalación.
+
+- Para descargar, se puede usar `git` con el comando:
+
+	`git clone https://github.com/AlmuHS/Pendrive_Reminder.git`
+	
+- Una vez descargado, para instalarlo hay que ejecutar:
+
+	`cd Pendrive_Reminder`
+	
+	`sudo ./installer.sh`
