@@ -11,4 +11,6 @@ udevadm control --reload-rules
 if test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -ge 106
 then
 	cp 10-*shutdown.rules /usr/share/polkit-1/rules.d/
+else
+	cp 50-inhibit-shutdown.pkla /tmp
 fi
