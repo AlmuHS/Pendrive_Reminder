@@ -1,6 +1,7 @@
 polkit.addRule(function(action, subject) {
     if (action.id == "org.freedesktop.consolekit.system.stop" ||
- 		action.id.indexOf("org.freedesktop.login1.power-off") == 0) || 
+ 		action.id == "org.freedesktop.login1.power-off" ||
+		action.id == "org.freedesktop.login1.power-off-multiple-sessions" || 
 		action.id == "org.xfce.session.xfsm-shutdown-helper")  
 	{
 	
