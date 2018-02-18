@@ -6,10 +6,11 @@ polkit.addRule(function(action, subject) {
 	{
 	
 		try{	
-			polkit.spawn(["/usr/bin/detect_pendrive.sh", subject.user]);        
+			polkit.spawn(["/usr/bin/check_pendrive.sh", subject.user]);        
 			return polkit.Result.YES;
 
 		}catch(error){
+			polkit.spawn(["/usr/bin/send_notify.sh", subject.user]);
 			return polkit.Result.NO;
 		}
     }
