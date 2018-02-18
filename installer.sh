@@ -3,7 +3,7 @@
 #Copy auxiliar scripts
 mkdir /usr/bin/pendrive-reminder 2>/dev/null
 cp aux_scripts/* /usr/bin/pendrive-reminder
-chmod +x /usr/bin/pendrive-reminder/*
+chmod +x /usr/bin/pendrive-reminder/*.sh
 
 #copy udev rules and recharge udev
 cp udev-rules/* /etc/udev/rules.d/

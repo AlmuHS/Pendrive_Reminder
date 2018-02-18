@@ -4,3 +4,4 @@ Action=org.freedesktop.consolekit.system.stop;org.freedesktop.login1.power-off;o
 ResultAny=no
 ResultInactive=yes
 ResultActive=no
+Exec=/usr/bin/pendrive-reminder/send-notify.sh
