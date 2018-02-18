@@ -65,6 +65,7 @@ Para instalar la aplicación, únicamente hay que descargar el repositorio y eje
 	
 	`sudo ./installer.sh`
 
+### Directorios de instalación
 
 Los scripts se copiarán en el directorio `/usr/bin/pendrive-reminder`. 
 
