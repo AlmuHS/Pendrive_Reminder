@@ -47,9 +47,9 @@ El comportamiento de la aplicación dependerá de la versión de polkit usada po
 
 - Si la versión de polkit es >= 0.106, al conectar el pendrive, la opción de apagado del sistema desaparecerá del entorno de escritorio. Si el usuario pulsa en el gestor de sesiones (botón de apagar), se le enviará una notificación indicando que debe desconectar el pendrive para eliminar el bloqueo (WIP)
 
-- Si la versión es < 0.106, la opción de apagado permanecerá al conectar el pendrive, pero al pulsarla no se realizará ninguna acción,
+- Si la versión es < 0.106, la opción de apagado permanecerá al conectar el pendrive, pero al pulsarla no se realizará ninguna acción.
 
-En ambos casos, el sistema volverá a la normalidad, desbloqueando el apagado, al desconectar el pendrive
+En ambos casos, el sistema volverá a la normalidad, desbloqueando el apagado, al desconectar el pendrive.
 
 ## Instalación
 
@@ -64,3 +64,9 @@ Para instalar la aplicación, únicamente hay que descargar el repositorio y eje
 	`cd Pendrive_Reminder`
 	
 	`sudo ./installer.sh`
+
+
+Los scripts se copiarán en el directorio `/usr/bin/pendrive-reminder`. 
+
+La regla polkit se copiará en `/usr/share/polkit-1/rules.d/` en caso de polkit >= 0.106. 
+En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/bin/pendrive-reminder` y, una vez conectado el pendrive, se copiará a `/etc/polkit-1/localauthority/50-local.d/`, de donde se borrará una vez se desconecte el pendrive
