@@ -16,13 +16,13 @@ El funcionamiento es muy simple: si intentas apagar el ordenador con el pendrive
 ### Udev
 Para nuestra aplicación, se han usado dos reglas udev, asociadas a los eventos de conexión y desconexión de un dispositivo USB.
 
-- La primera regla udev, `10-usbmount.rules`, al detectar el evento de conexión de un dispositivo de almacenamiento USB, invocará al script `usbdevinserted.sh`, Este script escribirá el identificador del USB en un fichero, creándolo en caso de no existir.
+- La primera regla udev, [10-usbmount.rules](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/udev-rules/10-usbmount.rules), al detectar el evento de conexión de un dispositivo de almacenamiento USB, invocará al script [usbdevinserted.sh](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevinserted.sh). Este script escribirá el identificador del USB en un fichero, creándolo en caso de no existir.
 Este fichero nos servirá de testigo para saber si queda algún dispositivo de almacenamiento USB conectado en el sistema.
 
 	Como identificador usaremos la variable `DEVPATH` asociada al dispositivo, y el fichero generado estará ubicado en `/tmp/usbdevinfo`
 
 
-- La segunda regla udev detectará el evento de desconexión del dispositivo USB, e invocará al script `usbdevgone.sh`. que buscará el identificador del dispositivo en el fichero testigo y, en caso de existir, lo borrará. Una vez borrado el identificador, si el fichero está vacío (no queda ningún dispositivo conectado) borrará el fichero.
+- La segunda regla udev,[11-usbdisconnect.rules](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/udev-rules/11-usbdisconnect.rules), detectará el evento de desconexión del dispositivo USB, e invocará al script [usbdevgone.sh](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevgone.sh). que buscará el identificador del dispositivo en el fichero testigo y, en caso de existir, lo borrará. Una vez borrado el identificador, si el fichero está vacío (no queda ningún dispositivo conectado) borrará el fichero.
 
 	Dadas las diferencias entre distribuciones, esta segunda regla udev se ha asociado a dos eventos distintos: unbind y remove, que representan el evento de desconexión en diferentes distribuciones.
 
