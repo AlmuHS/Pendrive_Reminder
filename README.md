@@ -16,15 +16,15 @@ El funcionamiento es muy simple: si intentas apagar el ordenador con el pendrive
 ### Udev
 Para nuestra aplicación, se han usado dos reglas udev, asociadas a los eventos de conexión y desconexión de un dispositivo USB.
 
-- La primera regla udev, [10-usbmount.rules](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/udev-rules/10-usbmount.rules), al detectar el evento de conexión de un dispositivo de almacenamiento USB, invocará al script [usbdevinserted.sh](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevinserted.sh). Este script escribirá el identificador del USB en un fichero, creándolo en caso de no existir.
+- La primera regla udev, [`10-usbmount.rules`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/udev-rules/10-usbmount.rules), al detectar el evento de conexión de un dispositivo de almacenamiento USB, invocará al script [`usbdevinserted.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevinserted.sh). Este script escribirá el identificador del USB en un fichero, creándolo en caso de no existir.
 Este fichero nos servirá de testigo para saber si queda algún dispositivo de almacenamiento USB conectado en el sistema.
 
 	Como identificador usaremos la variable `DEVPATH` asociada al dispositivo, y el fichero generado estará ubicado en `/tmp/usbdevinfo`
 
 
-- La segunda regla udev,[11-usbdisconnect.rules](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/udev-rules/11-usbdisconnect.rules), detectará el evento de desconexión del dispositivo USB, e invocará al script [usbdevgone.sh](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevgone.sh). que buscará el identificador del dispositivo en el fichero testigo y, en caso de existir, lo borrará. Una vez borrado el identificador, si el fichero está vacío (no queda ningún dispositivo conectado) borrará el fichero.
+- La segunda regla udev,[`11-usbdisconnect.rules`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/udev-rules/11-usbdisconnect.rules), detectará el evento de desconexión del dispositivo USB, e invocará al script [`usbdevgone.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevgone.sh). que buscará el identificador del dispositivo en el fichero testigo y, en caso de existir, lo borrará. Una vez borrado el identificador, si el fichero está vacío (no queda ningún dispositivo conectado) borrará el fichero.
 
-	Dadas las diferencias entre distribuciones, esta segunda regla udev se ha asociado a dos eventos distintos: unbind y remove, que representan el evento de desconexión en diferentes distribuciones.
+	Dadas las diferencias entre distribuciones, esta segunda regla udev se ha asociado a dos eventos distintos: `unbind` y `remove`, que representan el evento de desconexión en diferentes distribuciones.
 
 ### Polkit
 Añadido a las reglas udev, también se han creado dos reglas polkit. Estas servirán para detectar el evento de apagado y denegar la autorización para el mismo, en caso de que haya algún dispositivo de almacenamiento USB conectado.
@@ -32,13 +32,13 @@ Añadido a las reglas udev, también se han creado dos reglas polkit. Estas serv
 Debido a las diferencias entre las versiones 0.106 (que admite ficheros .rules en javascript) y las anteriores (que funcionan con ficheros de autorización) se han seguido dos implementaciones para este comportamiento:
 
 
-- Para las versiones modernas de polkit (>= 0.106), se ha usado un fichero .rules (`10-inhibit-shutdown.rules`) que, al detectar el evento de apagado, invoca a un script (`check_pendrive.sh`) que indica si el fichero testigo existe en el sistema, devolviendo 0 (correcto) en caso de que no exista y 1 (error) en caso de que no exista.
+- Para las versiones modernas de polkit (>= 0.106), se ha usado un fichero .rules [`10-inhibit-shutdown.rules`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/polkit-rules/10-inhibit-shutdown.rules) que, al detectar el evento de apagado, invoca a un script ([`check_pendrive.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/check_pendrive.sh)) que indica si el fichero testigo existe en el sistema, devolviendo 0 (correcto) en caso de que no exista y 1 (error) en caso de que no exista.
 
-	En caso de error, se deniega el permiso, y se invoca a otro script (`send_notify.sh`) que envía una notificación al usuario, indicando que debe desconectar el pendrive para poder apagar el ordenador.
+	En caso de error, se deniega el permiso, y se invoca a otro script ([`send_notify.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/send_notify.sh)) que envía una notificación al usuario, indicando que debe desconectar el pendrive para poder apagar el ordenador.
 	
-- Para las versiones antiguas de polkit (< 0.106), se ha usado un fichero de autorización .pkla (`50-inhibit-shutdown.pkla`).
-		Este fichero será copiado por el script `usbdevinserted.sh` durante el evento de conexión del pendrive. Al copiarlo, se activará el bloqueo del apagado.
-		Una vez el pendrive se desconecte, el script `usbdevgone.sh`, en caso de que no quede ningún dispositivo conectado, borrará el fichero de autorización para desactivar el bloqueo.
+- Para las versiones antiguas de polkit (< 0.106), se ha usado un fichero de autorización .pkla ([`50-inhibit-shutdown.pkla`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/polkit-rules/50-inhibit-shutdown.pkla)).
+		Este fichero será copiado por el script [`usbdevinserted.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevinserted.sh) durante el evento de conexión del pendrive. Al copiarlo, se activará el bloqueo del apagado.
+		Una vez el pendrive se desconecte, el script [`usbdevgone.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevgone.sh), en caso de que no quede ningún dispositivo conectado, borrará el fichero de autorización para desactivar el bloqueo.
 		
 Dadas las diferencias entre distribuciones y/o entornos de escritorio, estas reglas polkit estan asociadas varios eventos distintos: `org.freedesktop.consolekit.system.stop`, `org.freedesktop.login1.power-off`, `org.freedesktop.login1.power-off-multiple-sessions` y `org.xfce.session.xfsm-shutdown-helper` 
 
