@@ -45,7 +45,7 @@ Dadas las diferencias entre distribuciones y/o entornos de escritorio, estas reg
 ## Comportamiento
 El comportamiento de la aplicación dependerá de la versión de polkit usada por el sistema.
 
-- Si la versión de polkit es >= a 0.106, al conectar el pendrive, la opción de apagado del sistema desaparecerá del entorno de escritorio. Si el usuario pulsa en el gestor de sesiones (botón de apagar), se le enviará una notificación indicando que debe desconectar el pendrive para eliminar el bloqueo (WIP)
+- Si la versión de polkit es >= 0.106, al conectar el pendrive, la opción de apagado del sistema desaparecerá del entorno de escritorio. Si el usuario pulsa en el gestor de sesiones (botón de apagar), se le enviará una notificación indicando que debe desconectar el pendrive para eliminar el bloqueo (WIP)
 
 - Si la versión es < 0.106, la opción de apagado permanecerá al conectar el pendrive, pero al pulsarla no se realizará ninguna acción,
 
