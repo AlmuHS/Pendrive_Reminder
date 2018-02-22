@@ -27,6 +27,7 @@ then
 	
 	for user in $user_list
 	do
+		export DISPLAY=":0"
 		su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer" -u critical'
 	done
 fi

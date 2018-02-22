@@ -27,5 +27,6 @@ user_list=$(who | cut -d " " -f 1)
 
 for user in $user_list
 do
+	export DISPLAY=":0"	
 	su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enabled. The shutdown will be unlocked when pendrive is disconnected" -u critical'
 done
