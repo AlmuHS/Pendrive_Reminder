@@ -8,9 +8,14 @@ set 2>&1 | grep DEVPATH | cut -d "=" -f 2 >> /tmp/usbdevinfo
 #In polkit version < 0.106, the rules file don't run, so we need to use the old method
 if test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -lt 106
 then
-	#Copy pkla file in localauthority directory
-	cp /usr/bin/pendrive-reminder/50-inhibit-shutdown.pkla /etc/polkit-1/localauthority/50-local.d/
 
+	#Check is pkla file exists in localauthority directory	
+	if ! test -f /etc/polkit-1/localauthority/50-local.d/50-inhibit-shutdown.pkla
+	then
+		#If it don't exists, copy pkla file in localauthority directory		
+		cp /usr/bin/pendrive-reminder/50-inhibit-shutdown.pkla /etc/polkit-1/localauthority/50-local.d/
+	fi
+	
 	#Restart service
 	service polkit restart
 fi

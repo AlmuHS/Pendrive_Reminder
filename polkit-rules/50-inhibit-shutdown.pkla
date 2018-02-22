@@ -2,6 +2,6 @@
 Identity=unix-user:*
 Action=org.freedesktop.consolekit.system.stop;org.freedesktop.login1.power-off;org.freedesktop.login1.power-off-multiple-sessions;org.xfce.session.xfsm-shutdown-helper
 ResultAny=no
-ResultInactive=yes
+ResultInactive=no
 ResultActive=no
 
