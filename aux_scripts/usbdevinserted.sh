@@ -21,6 +21,7 @@ then
 
 fi
 
+
 #Notify all connected users
 user_list=$(who | cut -d " " -f 1)
 
