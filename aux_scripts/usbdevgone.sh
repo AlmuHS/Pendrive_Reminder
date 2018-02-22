@@ -21,5 +21,9 @@ then
 		rm /etc/polkit-1/localauthority/50-local.d/50-inhibit-shutdown.pkla
 		service polkit restart
 	fi
+
+	#Notify user
+	user=$(who | tail | cut -d " " -f 1)
+	su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer" -u critical'
 fi
 
