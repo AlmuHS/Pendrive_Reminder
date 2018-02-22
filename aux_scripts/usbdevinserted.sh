@@ -19,8 +19,8 @@ then
 	#Restart service
 	service polkit restart
 
-	#Notify user
-	user=$(who | tail | cut -d " " -f 1)
-	su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enabled. The shutdown will be unlocked when pendrive is disconnected" -u critical'
-
 fi
+
+#Notify user
+user=$(who | tail | cut -d " " -f 1)
+su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enabled. The shutdown will be unlocked when pendrive is disconnected" -u critical'
