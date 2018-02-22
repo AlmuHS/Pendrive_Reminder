@@ -22,8 +22,12 @@ then
 		service polkit restart
 	fi
 
-	#Notify user
-	user=$(who | tail | cut -d " " -f 1)
-	su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer" -u critical'
+	#Notify all connected users
+	user_list=$(who | cut -d " " -f 1)
+	
+	for user in $user_list
+	do
+		su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer" -u critical'
+	done
 fi
 
