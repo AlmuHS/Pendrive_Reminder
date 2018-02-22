@@ -72,3 +72,16 @@ Los scripts se copiarán en el directorio `/usr/bin/pendrive-reminder`.
 
 La regla polkit se copiará en `/usr/share/polkit-1/rules.d/` en caso de polkit >= 0.106. 
 En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/bin/pendrive-reminder` y, una vez conectado el pendrive, se copiará a `/etc/polkit-1/localauthority/50-local.d/`, de donde se borrará una vez se desconecte el pendrive
+
+
+## Distribuciones con Polkit < 0.106
+- Debian (v0.105)
+- Ubuntu  (v0.105)
+
+(En desarrollo)
+
+## Distribuciones con Polkit >= 0.106
+- Gentoo (v0.106)
+- Fedora 27 (v0.113)
+
+(En desarrollo)
