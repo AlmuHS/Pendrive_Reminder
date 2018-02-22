@@ -45,11 +45,11 @@ Dadas las diferencias entre distribuciones y/o entornos de escritorio, estas reg
 ## Comportamiento
 El comportamiento de la aplicación dependerá de la versión de polkit usada por el sistema.
 
-- Si la versión de polkit es >= 0.106, al conectar el pendrive, la opción de apagado del sistema desaparecerá del entorno de escritorio. Si el usuario pulsa en el gestor de sesiones (botón de apagar), se le enviará una notificación indicando que debe desconectar el pendrive para eliminar el bloqueo (WIP)
+Según el entorno de escritorio y la distribución, la opción de apagado desaparecerá del menú de apagado, o simplemente se mantendrá pero no hará ninguna acción
 
-- Si la versión es < 0.106, la opción de apagado permanecerá al conectar el pendrive, pero al pulsarla no se realizará ninguna acción.
+Adems, si la versión de polkit es >= 0.106, al abrir el menú de apagado con el pendrive conectado, se enviará una notificación indicando que debe desconectar el pendrive para desbloquear el apagado (WIP)
 
-En ambos casos, el sistema volverá a la normalidad, desbloqueando el apagado, al desconectar el pendrive.
+En todos los casos, el sistema volverá a la normalidad, desbloqueando el apagado, al desconectar el pendrive.
 Al conectar y desconectar el pendrive, se emitirá una notificación indicando que el bloqueo de apagado se ha activado o desactivado
 
 ## Instalación
@@ -77,7 +77,7 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 ## Distribuciones con Polkit < 0.106
 - Debian (v0.105)
 - Ubuntu  (v0.105)
-- MAX MadridLinux (v0.105)
+- MAX 9 MadridLinux (v0.105)
 
 (En desarrollo)
 
