@@ -77,6 +77,7 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 ## Distribuciones con Polkit < 0.106
 - Debian (v0.105)
 - Ubuntu  (v0.105)
+- MAX MadridLinux (v0.105)
 
 (En desarrollo)
 
