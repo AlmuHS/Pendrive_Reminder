@@ -18,3 +18,12 @@ else
 	#if polkit version is < 0.106 copy pkla file to a temporal directory
 	cp polkit-rules/50-inhibit-shutdown.pkla /usr/bin/pendrive-reminder
 fi
+
+#check linux distribution
+distro=$(cat /etc/os-release | grep ID | cut -d = -f 2)
+
+#if distribution is Debian or Ubuntu, install libnotify
+if test $distro = "debian" || test $distro = "ubuntu"
+then
+	apt install libnotify-bin
+fi

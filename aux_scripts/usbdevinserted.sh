@@ -21,6 +21,6 @@ then
 
 	#Notify user
 	user=$(who | tail | cut -d " " -f 1)
-	su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enable. The shutdown will be unlocked when pendrive is disconnected" -u critical'
+	su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enabled. The shutdown will be unlocked when pendrive is disconnected" -u critical'
 
 fi
