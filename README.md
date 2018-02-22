@@ -45,7 +45,7 @@ Dadas las diferencias entre distribuciones y/o entornos de escritorio, estas reg
 ## Comportamiento
 El comportamiento de la aplicación dependerá de la versión de polkit usada por el sistema.
 
-Según el entorno de escritorio y la distribución, la opción de apagado desaparecerá del menú de apagado, o simplemente se mantendrá pero no hará ninguna acción
+Según el entorno de escritorio y la distribución, la opción de apagado desaparecerá del menú de apagado, o simplemente se mantendrá pero sin asociarse a ninguna acción (al pulsarse no hace nada).
 
 Además, si la versión de polkit es >= 0.106, al abrir el menú de apagado con el pendrive conectado, se enviará una notificación indicando que debe desconectar el pendrive para desbloquear el apagado (WIP)
 
