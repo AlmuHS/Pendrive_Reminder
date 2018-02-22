@@ -43,7 +43,7 @@ Debido a las diferencias entre las versiones 0.106 (que admite ficheros .rules e
 Dadas las diferencias entre distribuciones y/o entornos de escritorio, estas reglas polkit estan asociadas varios eventos distintos: `org.freedesktop.consolekit.system.stop`, `org.freedesktop.login1.power-off`, `org.freedesktop.login1.power-off-multiple-sessions` y `org.xfce.session.xfsm-shutdown-helper` 
 
 ## Comportamiento
-El comportamiento de la aplicación dependerá de la versión de polkit usada por el sistema.
+El comportamiento de la aplicación dependerá de la versión de polkit usada por el sistema, y de la distribución y entorno de escritorio donde se ejecute
 
 Según el entorno de escritorio y la distribución, la opción de apagado desaparecerá del menú de apagado, o simplemente se mantendrá pero sin asociarse a ninguna acción (al pulsarse no hace nada).
 
