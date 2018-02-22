@@ -1,5 +1,8 @@
 #!/bin/bash
 
-user=$(who | tail | cut -d " " -f 1)
+export XAUTHORITY="/home/$user/.Xauthority"
+export DISPLAY=$(cat "/tmp/display.$user")
+
+user=$1
 su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enabled. Disconnect pendrive to enable shutdown" -u critical'
 
