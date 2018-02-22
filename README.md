@@ -50,6 +50,7 @@ El comportamiento de la aplicación dependerá de la versión de polkit usada po
 - Si la versión es < 0.106, la opción de apagado permanecerá al conectar el pendrive, pero al pulsarla no se realizará ninguna acción.
 
 En ambos casos, el sistema volverá a la normalidad, desbloqueando el apagado, al desconectar el pendrive.
+Al conectar y desconectar el pendrive, se emitirá una notificación indicando que el bloqueo de apagado se ha activado o desactivado
 
 ## Instalación
 
