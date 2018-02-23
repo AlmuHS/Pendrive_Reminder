@@ -10,7 +10,7 @@ El funcionamiento es muy simple: si intentas apagar el ordenador con el pendrive
 - Polkit
 - Udev
 - libnotify
-- cron (solo si la versión de polkit es < 0.106)
+- cron (solo si la versión de Polkit es < 0.106)
 
 ## Implementación
 
