@@ -10,6 +10,7 @@ El funcionamiento es muy simple: si intentas apagar el ordenador con el pendrive
 - Polkit
 - Udev
 - libnotify
+- cron (solo si la versión de polkit es < 0.106)
 
 ## Implementación
 
@@ -39,6 +40,8 @@ Debido a las diferencias entre las versiones 0.106 (que admite ficheros .rules e
 - Para las versiones antiguas de polkit (< 0.106), se ha usado un fichero de autorización .pkla ([`50-inhibit-shutdown.pkla`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/polkit-rules/50-inhibit-shutdown.pkla)).
 		Este fichero será copiado por el script [`usbdevinserted.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevinserted.sh) durante el evento de conexión del pendrive. Al copiarlo, se activará el bloqueo del apagado.
 		Una vez el pendrive se desconecte, el script [`usbdevgone.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevgone.sh), en caso de que no quede ningún dispositivo conectado, borrará el fichero de autorización para desactivar el bloqueo.
+		
+    También, para el caso extremo de que el usuario fuerce el apagado del sistema con el pendrive conectado (a traves de línea de   comandos u otros métodos), se ha añadido una tarea cron que, al iniciar el sistema, comprueba si el fichero testigo existe, y en  caso contrario, borra el fichero de autorización (en caso de que este aún exista en el sistema)
 		
 Dadas las diferencias entre distribuciones y/o entornos de escritorio, estas reglas polkit estan asociadas varios eventos distintos: `org.freedesktop.consolekit.system.stop`, `org.freedesktop.login1.power-off`, `org.freedesktop.login1.power-off-multiple-sessions` y `org.xfce.session.xfsm-shutdown-helper` 
 
