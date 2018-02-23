@@ -13,5 +13,7 @@ rm $udev_files
 if test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -ge 106
 then
 	rm /usr/share/polkit-1/rules.d/10-inhibit-shutdown.rules
+else
+	rm /etc/polkit-1/localauthority/50-local.d/50-inhibit-shutdown.pkla
 fi
 
