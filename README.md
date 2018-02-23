@@ -77,16 +77,15 @@ La regla polkit se copiará en `/usr/share/polkit-1/rules.d/` en caso de polkit 
 En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/bin/pendrive-reminder` y, una vez conectado el pendrive, se copiará a `/etc/polkit-1/localauthority/50-local.d/`, de donde se borrará una vez se desconecte el pendrive
 
 
-## Distribuciones con Polkit < 0.106
-- Debian (v0.105)
-- Ubuntu  (v0.105)
+## Distribuciones testeadas:
+### Polkit < 0.106
+- Debian 9 y 10 (v0.105): Probada en entornos GNOME y KDE
 - MAX 9 MadridLinux (v0.105)
 
 (En desarrollo)
 
-## Distribuciones con Polkit >= 0.106
-- Gentoo (v0.106)
-- Fedora 27 (v0.113)
+### Polkit >= 0.106
+- Gentoo (v0.106): Probada en entorno Cinnamon, con sistema de inicio OpenRC
 
 (En desarrollo)
 
