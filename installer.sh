@@ -20,7 +20,7 @@ else
 fi
 
 #check linux distribution
-distro=$(cat /etc/os-release | grep '^ID=' | cut -d = -f 2)
+distro=$(grep '^ID=' /etc/os-release | cut -d = -f 2)
 
 #if distribution is Debian or Ubuntu, install libnotify
 if test "$distro" = "debian" || test "$distro" = "ubuntu"
