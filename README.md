@@ -86,3 +86,6 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 - Fedora 27 (v0.113)
 
 (En desarrollo)
+
+## Contribuidores
+- [maxezek](https://github.com/maxezek): Testeador de la aplicación en MAX 9 MadridLinux
