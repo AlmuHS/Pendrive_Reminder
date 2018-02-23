@@ -14,7 +14,11 @@ if ! test -s $filepath
 then
 	#if file is empty, remove it
 	rm $filepath
+fi
 
+#if file don't exists
+if ! test -e $filepath
+then
 	#if polkit version is < 0.106, remove pkla file to disable polkit rule
 	if test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -lt 106
 	then
@@ -24,11 +28,10 @@ then
 
 	#Notify all connected users
 	user_list=$(who | cut -d " " -f 1)
-	
+
 	for user in $user_list
 	do
 		export DISPLAY=":0"
 		su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer" -u critical'
 	done
 fi
-
