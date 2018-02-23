@@ -19,7 +19,7 @@ else
 	cp polkit-rules/50-inhibit-shutdown.pkla /usr/bin/pendrive-reminder
 
 	#Add cron task to remove shutdown lock after forced shutdown or reboot
-	(crontab -l 2>/dev/null; echo "@reboot (sh /usr/bin/pendrive-reminder/check_shutforced.sh)") | crontab -
+	(crontab -l 2>/dev/null; echo "@reboot /usr/bin/pendrive-reminder/check_shutforced.sh") | crontab -
 fi
 
 #check linux distribution

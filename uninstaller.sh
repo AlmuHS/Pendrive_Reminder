@@ -14,8 +14,9 @@ if test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -ge 106
 then
 	rm /usr/share/polkit-1/rules.d/10-inhibit-shutdown.rules
 
-#if polkit < 0.106, remove pkla file
+#if polkit < 0.106, remove pkla file and cron task
 else
 	rm /etc/polkit-1/localauthority/50-local.d/50-inhibit-shutdown.pkla
+	crontab -l 2>/dev/null | grep -v '/usr/bin/pendrive-reminder/check_shutforced.sh'  | crontab -
 fi
 
