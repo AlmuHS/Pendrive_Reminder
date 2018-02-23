@@ -89,3 +89,4 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 
 ## Contribuidores
 - [maxezek](https://github.com/maxezek): Testeo de la aplicación en MAX 9 MadridLinux
+- [lendulado](https://github.com/lendulado): Testeo de la aplicación en Debian 9. Reporte de errores en instalador
