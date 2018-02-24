@@ -86,7 +86,8 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 (En desarrollo)
 
 ### Polkit >= 0.106
-- Gentoo (v0.106) :white_check_mark: : Probada en entorno Cinnamon, con sistema de inicio OpenRC 
+- Gentoo (v0.106) :white_check_mark: : Probada en entorno Cinnamon, con sistema de inicio OpenRC
+- Arch Linux (v0.115)  :bangbang: : Probada en entorno KDE
 
 (En desarrollo)
 
