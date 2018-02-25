@@ -18,7 +18,6 @@ then
 	
 	#Restart service
 	service polkit restart
-
 fi
 
 

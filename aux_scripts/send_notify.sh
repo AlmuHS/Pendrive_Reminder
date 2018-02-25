@@ -1,10 +1,17 @@
 #!/bin/bash
 
-export DISPLAY=":0"
+
 
 user=$1
-su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enabled. Disconnect pendrive to enable shutdown" -u critical'
 
+export DISPLAY=":0"
+export XAUTHORITY="/home/$user/.Xauthority"
 
+echo $user $XAUTHORITY > /tmp/user
+cat $XAUTHORITY > /tmp/Xauth
+
+pkexec --user $user notify-send  "Pendrive Reminder" "Shutdown lock enabled. Disconnect pendrive to enable shutdown"
+
+exit 0
 
 
