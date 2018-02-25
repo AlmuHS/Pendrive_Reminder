@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 user=$1
 
 export DISPLAY=":0"
