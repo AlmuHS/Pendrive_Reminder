@@ -21,7 +21,7 @@ then
 	for user in $user_list
 	do
 		export DISPLAY=":0"
-		su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer" -u critical'
+		su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer"'
 	done
 fi
 
@@ -29,5 +29,4 @@ fi
 if ! test -e $filepath && test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -lt 106
 then
 	rm /etc/polkit-1/localauthority/50-local.d/50-inhibit-shutdown.pkla
-	service polkit restart	
 fi
