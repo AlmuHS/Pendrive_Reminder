@@ -1,6 +1,15 @@
 #!/bin/bash
 
-#Copy USB identifier in usbdevinfo file.
+#Script linked to udev rule
+
+#Generates a watchdog file, adding the id of usb storage device when it is connected
+#The watchdog file will be in /tmp/usbdevinfo
+
+#In polkit version < 0.106, this script also copy polkit pkla file to add polkit rule
+#This polkit rule locks the shutdown while usb storage devices are connected to the machine
+
+
+#Copy USB identifier in usbdevinfo watchdog file.
 #This file will be used to detect if there are any usb storage device connected to the machine
 set 2>&1 | grep DEVPATH | cut -d "=" -f 2 >> /tmp/usbdevinfo
 
@@ -19,8 +28,11 @@ fi
 
 
 #Notify all connected users
+
+#Get online users list
 user_list=$(who | cut -d " " -f 1)
 
+#Send notification to all users in the list
 for user in $user_list
 do
 	export DISPLAY=":0"	

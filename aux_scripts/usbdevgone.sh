@@ -1,9 +1,20 @@
 #!/bin/bash
 
+#Script linked to udev rule
+
+#When usb device is disconnected, this script search the device's id in watchdog file
+#If the device's id exists in the file, remove this id
+#After remove device's id, if current file is empty, remove it 
+
+#In polkit version < 0.106, this script also removes polkit pkla file to disable polkit rule
+#The polkit pkla only will be removed when watchdog file don't exists in the system
+#After disable this polkit rule, the shutdown will be unlocked
+
+
 #USB Device identifier
 devpath=$1 
 
-#Path to USB identifiers list file
+#Path to USB watchdog file
 filepath="/tmp/usbdevinfo"
 
 #if the USB's id is in the file, remove it
