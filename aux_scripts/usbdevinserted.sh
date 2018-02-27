@@ -23,6 +23,7 @@ then
 	then
 		#If it don't exists, copy pkla file in localauthority directory		
 		cp /usr/bin/pendrive-reminder/50-inhibit-shutdown.pkla /etc/polkit-1/localauthority/50-local.d/
+		service polkit restart
 	fi
 fi
 

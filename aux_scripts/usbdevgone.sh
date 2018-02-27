@@ -33,6 +33,7 @@ then
 	do
 		export DISPLAY=":0"
 		su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer"'
+		service polkit restart
 	done
 fi
 
