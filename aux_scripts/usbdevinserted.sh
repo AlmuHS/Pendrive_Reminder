@@ -27,15 +27,17 @@ then
 	fi
 fi
 
+#Notify all connected users, only when first usb device is connected 
+if test $(wc -l /tmp/usbdevinfo | cut -d " " -f 1) -eq 1
+then
+	#Get online users list
+	user_list=$(who | cut -d " " -f 1)
 
-#Notify all connected users
+	#Send notification to all users in the list
+	for user in $user_list
+	do
+		export DISPLAY=":0"	
+		su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enabled. The shutdown will be unlocked when pendrive is disconnected"'
+	done
+fi
 
-#Get online users list
-user_list=$(who | cut -d " " -f 1)
-
-#Send notification to all users in the list
-for user in $user_list
-do
-	export DISPLAY=":0"	
-	su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enabled. The shutdown will be unlocked when pendrive is disconnected"'
-done

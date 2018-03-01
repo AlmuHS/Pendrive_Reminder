@@ -21,7 +21,7 @@ filepath="/tmp/usbdevinfo"
 sed -in "\%${devpath}%d" $filepath
 
 #After remove the id, check if file is empty
-if ! test -s $filepath  
+if test -e $filepath && ! test -s $filepath  
 then
 	#if file is empty, remove it
 	rm $filepath

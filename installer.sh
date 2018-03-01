@@ -1,9 +1,11 @@
 #!/bin/bash
 
+INSTALL_DIR="/usr/bin/pendrive-reminder"
+
 #Copy auxiliar scripts
-mkdir /usr/bin/pendrive-reminder 2>/dev/null
-cp aux_scripts/* /usr/bin/pendrive-reminder
-chmod +x /usr/bin/pendrive-reminder/*.sh
+mkdir $INSTALL_DIR 2>/dev/null
+cp aux_scripts/* $INSTALL_DIR
+chmod +x $INSTALL_DIR/*.sh
 
 #copy udev rules and recharge udev
 cp udev-rules/* /etc/udev/rules.d/
@@ -16,10 +18,10 @@ then
 	cp polkit-rules/10-inhibit-shutdown.rules /usr/share/polkit-1/rules.d/
 else
 	#if polkit version is < 0.106 copy pkla file to a temporal directory
-	cp polkit-rules/50-inhibit-shutdown.pkla /usr/bin/pendrive-reminder
+	cp polkit-rules/50-inhibit-shutdown.pkla $INSTALL_DIR
 
 	#Add cron task to remove shutdown lock after forced shutdown or reboot
-	(crontab -l 2>/dev/null; echo "@reboot /usr/bin/pendrive-reminder/check_shutforced.sh") | crontab -
+	(crontab -l 2>/dev/null; echo "@reboot $INSTALL_DIR/check_shutforced.sh") | crontab -
 fi
 
 
