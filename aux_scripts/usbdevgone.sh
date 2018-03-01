@@ -27,16 +27,16 @@ then
 	if ! test -s $filepath  
 	then
 		#if file is empty, remove it
-		rm $filepath
+		rm -f $filepath
 
-		#Notify all connected users
+		#Get user connected list		
 		user_list=$(who | cut -d " " -f 1)
 
+		#Notify all connected users
 		for user in $user_list
 		do
 			export DISPLAY=":0"
 			su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer"'
-			service polkit restart
 		done
 	fi
 
@@ -45,5 +45,6 @@ fi
 #if watchdog file don't exists and polkit version is < 0.106, remove pkla file to disable polkit rule
 if ! test -f $filepath && test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -lt 106
 then
-	rm /etc/polkit-1/localauthority/50-local.d/50-inhibit-shutdown.pkla
+	rm /etc/polkit-1/localauthority/50-local.d/50-inhibit-shutdown.pkla 2>/dev/null
+	service polkit restart
 fi
