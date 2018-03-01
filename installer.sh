@@ -14,9 +14,6 @@ if test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -ge 106
 then
 	#If polkit version is >= 0.106, copy rules file	
 	cp polkit-rules/10-inhibit-shutdown.rules /usr/share/polkit-1/rules.d/
-
-	#Also copy policy file, to allows to show notifications
-	cp polkit-rules/org.freedesktop.policykit.notify-send.policy /usr/share/polkit-1/actions/
 else
 	#if polkit version is < 0.106 copy pkla file to a temporal directory
 	cp polkit-rules/50-inhibit-shutdown.pkla /usr/bin/pendrive-reminder

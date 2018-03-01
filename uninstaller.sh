@@ -13,7 +13,6 @@ rm $udev_files
 if test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -ge 106
 then
 	rm /usr/share/polkit-1/rules.d/10-inhibit-shutdown.rules
-	rm /usr/share/polkit-1/actions/org.freedesktop.policykit.notify-send.policy
 
 #if polkit < 0.106, remove pkla file and cron task
 else
