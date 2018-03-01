@@ -17,28 +17,33 @@ devpath=$1
 #Path to USB watchdog file
 filepath="/tmp/usbdevinfo"
 
-#if the USB's id is in the file, remove it
-sed -in "\%${devpath}%d" $filepath
-
-#After remove the id, check if file is empty
-if test -e $filepath && ! test -s $filepath  
+#if watchdog file exists
+if test -f $filepath
 then
-	#if file is empty, remove it
-	rm $filepath
+	#if the USB's id is in the file, remove it
+	sed -in "\%${devpath}%d" $filepath
 
-	#Notify all connected users
-	user_list=$(who | cut -d " " -f 1)
+	#After remove the id, check if file is empty
+	if ! test -s $filepath  
+	then
+		#if file is empty, remove it
+		rm $filepath
 
-	for user in $user_list
-	do
-		export DISPLAY=":0"
-		su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer"'
-		service polkit restart
-	done
+		#Notify all connected users
+		user_list=$(who | cut -d " " -f 1)
+
+		for user in $user_list
+		do
+			export DISPLAY=":0"
+			su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer"'
+			service polkit restart
+		done
+	fi
+
 fi
 
-#if file don't exists and polkit version is < 0.106, remove pkla file to disable polkit rule
-if ! test -e $filepath && test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -lt 106
+#if watchdog file don't exists and polkit version is < 0.106, remove pkla file to disable polkit rule
+if ! test -f $filepath && test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -lt 106
 then
 	rm /etc/polkit-1/localauthority/50-local.d/50-inhibit-shutdown.pkla
 fi
