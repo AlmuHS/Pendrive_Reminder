@@ -82,6 +82,7 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 - Debian 9 y 10 (v0.105) :white_check_mark: : Probada en entornos GNOME y KDE  
 - MAX 9 MadridLinux (v0.105)  :white_check_mark:
 - Bodhi Linux  :x:
+- Linux Mint Xfce: :white_check_mark:
 
 (En desarrollo)
 
@@ -95,3 +96,4 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 - [maxezek](https://github.com/maxezek): Testeo de la aplicación en MAX 9 MadridLinux
 - [lendulado](https://github.com/lendulado): Ayuda con expresiones regulares, testeo de la aplicación en Debian 9, y reporte de errores en el instalador
 - [oxcar103](https://github.com/oxcar103): Testeo de la aplicación en Bodhi Linux
+- Fabio Natallini: Testeo de la aplicación en Linux Mint Xfce 
