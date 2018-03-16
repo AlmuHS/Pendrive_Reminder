@@ -33,7 +33,7 @@ Añadido a las reglas udev, también se han creado dos reglas polkit. Estas serv
 Debido a las diferencias entre las versiones 0.106 (que admite ficheros .rules en javascript) y las anteriores (que funcionan con ficheros de autorización) se han seguido dos implementaciones para este comportamiento:
 
 
-- Para las versiones modernas de polkit (>= 0.106), se ha usado un fichero .rules ([`10-inhibit-shutdown.rules`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/polkit-rules/10-inhibit-shutdown.rules)) que, al detectar el evento de apagado, invoca a un script ([`check_pendrive.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/check_pendrive.sh)) que indica si el fichero testigo existe en el sistema, devolviendo 0 (correcto) en caso de que no exista y 1 (error) en caso de que no exista.
+- Para las versiones modernas de polkit (>= 0.106), se ha usado un fichero .rules ([`10-inhibit-shutdown.rules`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/polkit-rules/10-inhibit-shutdown.rules)) que, al detectar el evento de apagado, invoca a un script ([`check_pendrive.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/check_pendrive.sh)) que indica si el fichero testigo existe en el sistema, devolviendo 0 (correcto) en caso de que no exista y 1 (error) en caso de que exista.
 
 	En caso de error, se deniega el permiso, y se invoca a otro script ([`send_notify.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/send_notify.sh)) que envía una notificación al usuario, indicando que debe desconectar el pendrive para poder apagar el ordenador.
 	
