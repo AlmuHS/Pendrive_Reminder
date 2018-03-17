@@ -30,7 +30,7 @@ fi
 distro=$(grep '^ID=' /etc/os-release | cut -d = -f 2)
 
 #if distribution is Debian or Ubuntu, install libnotify
-if test "$distro" = "debian" || test "$distro" = "ubuntu"
+if test "$distro" = "debian" || test "$distro" = "ubuntu" || test "$distro" = "linuxmint"
 then
 	apt install libnotify-bin
 fi
