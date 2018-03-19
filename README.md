@@ -96,4 +96,4 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 - [maxezek](https://github.com/maxezek): Testeo de la aplicación en MAX 9 MadridLinux
 - [lendulado](https://github.com/lendulado): Ayuda con expresiones regulares, testeo de la aplicación en Debian 9, y reporte de errores en el instalador
 - [oxcar103](https://github.com/oxcar103): Testeo de la aplicación en Bodhi Linux
-- Fabio Natallini: Testeo de la aplicación en Linux Mint Xfce 
+- Fabio Natalini: Testeo de la aplicación en Linux Mint Xfce 
