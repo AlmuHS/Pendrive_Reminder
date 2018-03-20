@@ -17,7 +17,7 @@ DBUS_PATH = '/org/preminder'
 
 class MyDBUSService(dbus.service.Object):
     def __init__(self):
-        bus_name = dbus.service.BusName(DBUS_NAME, bus=dbus.SessionBus())
+        bus_name = dbus.service.BusName(DBUS_NAME, bus=dbus.SystemBus())
         dbus.service.Object.__init__(self, bus_name, DBUS_PATH)
 
     @dbus.service.method(DBUS_NAME)

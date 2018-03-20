@@ -10,7 +10,7 @@ DBUS_NAME = 'org.preminder'
 DBUS_PATH = '/org/preminder'
 
 #get the session bus
-bus = dbus.SessionBus()
+bus = dbus.SystemBus()
 #get the object
 the_object = bus.get_object(DBUS_NAME, DBUS_PATH)
 #get the interface
