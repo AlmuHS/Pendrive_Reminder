@@ -11,17 +11,8 @@
 #Get username from first parameter
 user=$1
 
-#Creates and export display environment variables.
-#This variables will be used by notify-send to shows message in user desktop environment
-
-export DISPLAY=":0" #Display number
-export XAUTHORITY="/home/$user/.Xauthority" #Cookie file
-
-#To send notification to user, we need to use the user account who we wants to show notification 
-#To get this, we will use pkexec command
-
-#The notification is disabled because it produce lags to show shutdown menu
-#pkexec --user $user notify-send  "Pendrive Reminder" "Shutdown lock enabled. Disconnect pendrive to enable shutdown"
+#send message to client using dbus system bus
+dbus-send --system /org/preminder/mensaje org.preminder.App
 
 exit 0
 
