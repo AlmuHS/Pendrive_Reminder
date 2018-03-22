@@ -24,15 +24,16 @@ else
 	(crontab -l 2>/dev/null; echo "@reboot $INSTALL_DIR/check_shutforced.sh") | crontab -
 fi
 
-
-
 #check linux distribution
 distro=$(grep '^ID=' /etc/os-release | cut -d = -f 2)
 
-#if distribution is Debian or Ubuntu, install libnotify
+#if distribution is Debian or Ubuntu, install libnotify and pip
 if test "$distro" = "debian" || test "$distro" = "ubuntu" || test "$distro" = "linuxmint"
 then
 	apt install libnotify-bin
+	apt install python-pip
 fi
 
+#Install dependencies for dbus python client
+pip install pygobject notify2 --user
 
