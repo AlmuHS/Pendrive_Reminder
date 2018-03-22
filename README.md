@@ -11,6 +11,8 @@ El funcionamiento es muy simple: si intentas apagar el ordenador con el pendrive
 - Udev
 - libnotify
 - cron (solo si la versión de Polkit es < 0.106)
+- dbus
+- Python 3
 
 ## Implementación
 
@@ -44,6 +46,13 @@ Debido a las diferencias entre las versiones 0.106 (que admite ficheros .rules e
     También, para el caso extremo de que el usuario fuerce el apagado del sistema con el pendrive conectado (a traves de línea de   comandos u otros métodos), se ha añadido una tarea cron que, al iniciar el sistema, comprueba si el fichero testigo existe, y en  caso contrario, borra el fichero de autorización (en caso de que este aún exista en el sistema)
 		
 Dadas las diferencias entre distribuciones y/o entornos de escritorio, estas reglas polkit estan asociadas varios eventos distintos: `org.freedesktop.consolekit.system.stop`, `org.freedesktop.login1.power-off`, `org.freedesktop.login1.power-off-multiple-sessions` y `org.xfce.session.xfsm-shutdown-helper` 
+
+### Dbus
+
+Para que polkit pueda envíar una notificación al usuario, se usará un servidor dbus (`org.preminder`), al cual estará conectado un cliente (`client.py`) propiedad del usuario.
+
+De esta forma, cuando polkit deniegue el permiso para apagar el sistema, el script [`send_notify.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/send_notify.sh) enviará una señal, usando el bus del sistema, al servicio `org.preminder`. El cliente de este servicio recibirá la señal y mostrará el mensaje al usuario.
+
 
 ## Comportamiento
 El comportamiento de la aplicación dependerá de la versión de polkit usada por el sistema, y de la distribución y entorno de escritorio donde se ejecute
