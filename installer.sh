@@ -22,23 +22,6 @@ then
 	#copy dbus-client
 	cp dbus-client/client.py $INSTALL_DIR
 
-	#Download python pip
-	wget https://bootstrap.pypa.io/get-pip.py
-
-	#get user list
-	USER_LIST=$(grep /home /etc/passwd | cut -d: -f1)
-
-	#For each user, install pip and use it to install dependencies
-	for user in $USER_LIST
-	do
-		#Install python pip
-		su $user -c 'python get-pip.py --user'
-		su $user -c 'pip install --upgrade pip'
-
-		#Install dependencies for dbus python client
-		su $user -c 'pip install pygobject notify2 --user'
-	done
-
 #If polkit version is < 0.106
 else
 	#if polkit version is < 0.106 copy pkla file to a temporal directory
