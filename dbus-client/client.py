@@ -4,9 +4,9 @@
 #With helpful of Alberto Caso https://es.stackoverflow.com/a/148802/26469
 
 from gi.repository import Gtk
+from gi.repository import Notify
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
-import notify2
 
 DBusGMainLoop(set_as_default=True)
 bus = dbus.SystemBus()
@@ -14,8 +14,8 @@ bus = dbus.SystemBus()
 def msg_handler(*args,**keywords):
     try:
         #show notification to desktop
-        notify2.init('Pendrive Reminder')
-        notify = notify2.Notification('Pendrive Reminder', 'Shutdown lock enabled. Disconnect pendrive to enable shutdown')
+        Notify.init('Pendrive Reminder')
+        notify = Notify.Notification.new('Pendrive Reminder', 'Shutdown lock enabled. Disconnect pendrive to enable shutdown')
         notify.show()
     except:
         pass
