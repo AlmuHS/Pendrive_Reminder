@@ -30,13 +30,12 @@ then
 		cp $INSTALL_DIR/50-inhibit-shutdown.pkla /etc/polkit-1/localauthority/50-local.d/
 		service polkit restart
 	fi
-
+else
 	#For each user, launch dbus client
 	for user in $user_list
 	do	
-		su $user -c "python $INSTALL_DIR/client.py"
+		su $user -c "nohup /usr/bin/pendrive-reminder/client.py &"
 	done
-
 fi
 
 #Notify all connected users, only when first usb device is connected 
