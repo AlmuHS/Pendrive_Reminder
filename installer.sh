@@ -26,7 +26,7 @@ then
 	wget https://bootstrap.pypa.io/get-pip.py
 
 	#get user list
-	USER_LIST=$(cat /etc/passwd | grep '/home' | cut -d: -f1)
+	USER_LIST=$(grep /home /etc/passwd | cut -d: -f1)
 
 	#For each user, install pip and use it to install dependencies
 	for user in $USER_LIST
