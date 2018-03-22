@@ -13,6 +13,8 @@ El funcionamiento es muy simple: si intentas apagar el ordenador con el pendrive
 - cron (solo si la versión de Polkit es < 0.106)
 - dbus
 - Python 3
+    - python-dbus
+    - pygobject
 
 ## Implementación
 
