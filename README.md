@@ -69,6 +69,22 @@ Al conectar y desconectar el pendrive, se emitirá una notificación indicando q
 ## Instalación
 
 Para instalar la aplicación, únicamente hay que descargar el repositorio y ejecutar el script de instalación.
+En el caso de las distribuciones que usan polkit < 0.106, también hay que instalar las dependencias del cliente dbus.
+
+- Instalación de dependencias
+
+    - Fedora:
+     
+      `sudo dnf install dbus-python pygobject3 python3-gobject`
+
+    - Arch Linux:
+
+      `sudo pacman -S python-dbus python-gobject`
+
+    - Gentoo:
+ 
+      `sudo emerge -a dev-python/dbus-python dev-python/pygobject`
+
 
 - Para descargar, se puede usar `git` con el comando:
 
