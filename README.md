@@ -73,15 +73,15 @@ En el caso de las distribuciones que usan polkit < 0.106, también hay que insta
 
 - Instalación de dependencias
 
-    - Fedora:
+    - **Fedora**:
      
       `sudo dnf install dbus-python pygobject3 python3-gobject`
 
-    - Arch Linux:
+    - **Arch Linux**:
 
       `sudo pacman -S python-dbus python-gobject`
 
-    - Gentoo:
+    - **Gentoo**:
  
       `sudo emerge -a dev-python/dbus-python dev-python/pygobject`
 
