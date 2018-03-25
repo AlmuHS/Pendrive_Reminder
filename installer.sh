@@ -20,7 +20,8 @@ then
 	cp polkit-rules/10-inhibit-shutdown.rules /usr/share/polkit-1/rules.d/
 
 	#copy dbus-client
-	cp dbus-client/client.py $INSTALL_DIR
+	cp dbus-client/* $INSTALL_DIR
+	chmod ugo+x $INSTALL_DIR/client.py
 
 #If polkit version is < 0.106
 else

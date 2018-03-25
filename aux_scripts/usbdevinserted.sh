@@ -19,6 +19,9 @@ INSTALL_DIR="/usr/bin/pendrive-reminder"
 #Get online users list
 user_list=$(who | cut -d " " -f 1)
 
+#Set display
+export DISPLAY=":0"
+
 #In polkit version < 0.106, the rules file don't run, so we need to use the old method
 if test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -lt 106
 then
@@ -33,8 +36,8 @@ then
 else
 	#For each user, launch dbus client
 	for user in $user_list
-	do	
-		su $user -c "nohup /usr/bin/pendrive-reminder/client.py &"
+	do		
+		nohup su $user -c '/usr/bin/pendrive-reminder/client.py' &
 	done
 fi
 
@@ -43,8 +46,7 @@ if test $(wc -l /tmp/usbdevinfo | cut -d " " -f 1) -eq 1
 then
 	#Send notification to all users in the list
 	for user in $user_list
-	do
-		export DISPLAY=":0"	
+	do			
 		su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enabled. The shutdown will be unlocked when pendrive is disconnected"'
 	done
 fi
