@@ -37,7 +37,7 @@ else
 	#For each user, launch dbus client
 	for user in $user_list
 	do		
-		nohup su $user -c '/usr/bin/pendrive-reminder/client.py' &
+		nohup su $user -c '/usr/bin/pendrive-reminder/client.py' & disown
 	done
 fi
 
@@ -50,4 +50,6 @@ then
 		su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enabled. The shutdown will be unlocked when pendrive is disconnected"'
 	done
 fi
+
+exit 0
 
