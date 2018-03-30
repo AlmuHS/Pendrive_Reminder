@@ -16,11 +16,8 @@ set 2>&1 | grep DEVPATH | cut -d "=" -f 2 >> /tmp/usbdevinfo
 #Path to installation directory
 INSTALL_DIR="/usr/bin/pendrive-reminder"
 
-#Get list of users with graphic session started
-user_list=$(who | sed '/(:.[0-9].[0-9])/p' | cut -d " " -f 1)
-
-#Get display of users
-display_list=$(who | gawk '/\(:[[:digit:]](\.[0-9])?\)/ { print substr($NF, 2, length($NF)-2) }')
+#Get list of users with graphic session started, and their active display 
+userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq) 
 
 #Get polkit version
 polkit_version=$(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2)
@@ -38,22 +35,25 @@ then
 	fi
 fi
 
-#Notify all connected users, only when first usb device is connected 
+#When first usb device is connected
 if test $(wc -l /tmp/usbdevinfo | cut -d " " -f 1) -eq 1
-then
-	counter=1	
-	#Send notification to all users in the list
-	for user in $user_list
+then	
+	#for each user, show notification and (only in polkit >= 106) launch dbus client 
+	for element in $userdisplay
 	do			
-		export DISPLAY=$(echo $display_list | cut -d " " -f $counter)		
+		#get username		
+		user=$(echo $element | cut -d ";" -f 1)
+		
+		#get display active of this user		
+		export DISPLAY=$(echo $element | cut -d ";" -f 2)
+		
+		#Send notification to user
 		su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enabled. The shutdown will be unlocked when pendrive is disconnected"'
 		#if polkit version >=106, also launch dbus client
 		if test $polkit_version -ge 106
 		then
 			su $user -c 'python /usr/bin/pendrive-reminder/client.py' &
 		fi
-		
-		counter=$((counter+1))
 	done
 fi
 
