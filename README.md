@@ -1,9 +1,9 @@
 # Pendrive_Reminder
-Pequeña aplicación para no olvidar el pendrive, para GNU/Linux
+Pequeña herramienta para no olvidar el pendrive, para GNU/Linux
 
 ## Introducción
-Esta aplicación tiene como intención hacer de recordatorio a la hora de usar tu pendrive en un PC ajeno.
-El funcionamiento es muy simple: si intentas apagar el ordenador con el pendrive conectado, la aplicación te mandará un aviso, y te bloqueará el apagado hasta que desconectes el pendrive
+Esta herramienta tiene como intención hacer de recordatorio a la hora de usar tu pendrive en un PC ajeno.
+El funcionamiento es muy simple: si intentas apagar el ordenador con el pendrive conectado, la herramienta te mandará un aviso, y te bloqueará el apagado hasta que desconectes el pendrive
 
 ## Requisitos
 - Sistema Operativo GNU/Linux
@@ -19,7 +19,7 @@ El funcionamiento es muy simple: si intentas apagar el ordenador con el pendrive
 ## Implementación
 
 ### Udev
-Para nuestra aplicación, se han usado dos reglas udev, asociadas a los eventos de conexión y desconexión de un dispositivo USB.
+Para nuestra herramienta, se han usado dos reglas udev, asociadas a los eventos de conexión y desconexión de un dispositivo USB.
 
 - La primera regla udev, [`10-usbmount.rules`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/udev-rules/10-usbmount.rules), al detectar el evento de conexión de un dispositivo de almacenamiento USB, invocará al script [`usbdevinserted.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevinserted.sh). Este script escribirá el identificador del USB en un fichero, creándolo en caso de no existir.
 Este fichero nos servirá de testigo para saber si queda algún dispositivo de almacenamiento USB conectado en el sistema.
@@ -57,7 +57,7 @@ De esta forma, cuando polkit deniegue el permiso para apagar el sistema, el scri
 
 
 ## Comportamiento
-El comportamiento de la aplicación dependerá de la versión de polkit usada por el sistema, y de la distribución y entorno de escritorio donde se ejecute
+El comportamiento de la herramienta dependerá de la versión de polkit usada por el sistema, y de la distribución y entorno de escritorio donde se ejecute
 
 Según el entorno de escritorio y la distribución, la opción de apagado desaparecerá del menú de apagado, o simplemente se mantendrá pero sin asociarse a ninguna acción (al pulsarse no hace nada).
 
@@ -68,7 +68,7 @@ Al conectar y desconectar el pendrive, se emitirá una notificación indicando q
 
 ## Instalación
 
-Para instalar la aplicación, únicamente hay que descargar el repositorio y ejecutar el script de instalación.
+Para instalar la herramienta, únicamente hay que descargar el repositorio y ejecutar el script de instalación.
 En el caso de las distribuciones que usan polkit < 0.106, también hay que instalar las dependencias del cliente dbus.
 
 - Instalación de dependencias
@@ -120,8 +120,8 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 (En desarrollo)
 
 ## Contribuidores
-- [maxezek](https://github.com/maxezek): Testeo de la aplicación en MAX 9 MadridLinux
-- [lendulado](https://github.com/lendulado): Ayuda con expresiones regulares, testeo de la aplicación en Debian 9, y reporte de errores en el instalador
-- [oxcar103](https://github.com/oxcar103): Testeo de la aplicación en Bodhi Linux
-- Fabio Natalini: Testeo de la aplicación en Linux Mint Xfce 
+- [maxezek](https://github.com/maxezek): Testeo de la herramienta en MAX 9 MadridLinux
+- [lendulado](https://github.com/lendulado): Ayuda con expresiones regulares, testeo de la herramienta en Debian 9, y reporte de errores en el instalador
+- [oxcar103](https://github.com/oxcar103): Testeo de la herramienta en Bodhi Linux
+- Fabio Natalini: Testeo de la herramienta en Linux Mint Xfce 
 - [acaso](https://github.com/acaso), [Lt-Henry](https://github.com/Lt-Henry): Ayuda con dbus
