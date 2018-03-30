@@ -13,11 +13,11 @@
 #This file will be used to detect if there are any usb storage device connected to the machine
 set 2>&1 | grep DEVPATH | cut -d "=" -f 2 >> /tmp/usbdevinfo
 
-#Path to instalation directory
+#Path to installation directory
 INSTALL_DIR="/usr/bin/pendrive-reminder"
 
-#Get online users list
-user_list=$(who | cut -d " " -f 1)
+#Get list of users with graphic session started
+user_list=$(who | sed '/(:.[0-9].[0-9])/p' | cut -d " " -f 1)
 
 #Set display
 export DISPLAY=":0"
@@ -37,7 +37,7 @@ else
 	#For each user, launch dbus client
 	for user in $user_list
 	do		
-		nohup su $user -c '/usr/bin/pendrive-reminder/client.py' & disown
+		su $user -c '/usr/bin/pendrive-reminder/client.py &'
 	done
 fi
 
