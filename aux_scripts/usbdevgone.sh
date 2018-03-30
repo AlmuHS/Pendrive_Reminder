@@ -10,12 +10,14 @@
 #The polkit pkla only will be removed when watchdog file don't exists in the system
 #After disable this polkit rule, the shutdown will be unlocked
 
-
 #USB Device identifier
 devpath=$1 
 
 #Path to USB watchdog file
 filepath="/tmp/usbdevinfo"
+
+#Get list of users with graphic session started, and their active display 
+userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq) 
 
 #if watchdog file exists
 if test -f $filepath
@@ -29,13 +31,16 @@ then
 		#if file is empty, remove it
 		rm -f $filepath
 
-		#Get user connected list		
-		user_list=$(who | cut -d " " -f 1)
-
 		#Notify all connected users
-		for user in $user_list
+		for element in $userdisplay
 		do
-			export DISPLAY=":0"
+			#get username		
+			user=$(echo $element | cut -d ";" -f 1)
+
+			#get display active of this user		
+			export DISPLAY=$(echo $element | cut -d ";" -f 2)
+
+			#Send notification to user
 			su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer"'
 		done
 	fi
