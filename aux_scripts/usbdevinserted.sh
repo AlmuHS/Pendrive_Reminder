@@ -52,7 +52,7 @@ then
 		#if polkit version >=106, also launch dbus client
 		if test $polkit_version -ge 106
 		then
-			su $user -c 'python /usr/bin/pendrive-reminder/client.py' &
+			su $user -c '/usr/bin/pendrive-reminder/client.py &>/dev/null' & | at now
 		fi
 	done
 fi
