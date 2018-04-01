@@ -56,6 +56,8 @@ Para que polkit pueda envíar una notificación al usuario, se usará un servido
 
 De esta forma, cuando polkit deniegue el permiso para apagar el sistema, el script [`send_notify.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/send_notify.sh) enviará una señal, usando el bus del sistema, al servicio `org.preminder`. El cliente de este servicio recibirá la señal y mostrará el mensaje al usuario.
 
+El cliente dbus será lanzado por el script `usbdevinserted.sh`, asociado a la regla udev [`10-usbmount.rules`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/udev-rules/10-usbmount.rules)
+
 
 ## Comportamiento
 El comportamiento de la herramienta dependerá de la versión de polkit usada por el sistema, y de la distribución y entorno de escritorio donde se ejecute
