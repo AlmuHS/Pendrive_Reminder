@@ -114,6 +114,7 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 - MAX 9 MadridLinux (v0.105)  :heavy_check_mark:
 - Bodhi Linux  :x:
 - Linux Mint Xfce: :heavy_check_mark:
+- Guadalinex Edu Slim :heavy_check_mark: : Entorno de escritorio LXDE 
 
 (En desarrollo)
 
