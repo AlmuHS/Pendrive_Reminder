@@ -131,3 +131,4 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 - Fabio Natalini: Testeo de la herramienta en Linux Mint Xfce 
 - [acaso](https://github.com/acaso), [Lt-Henry](https://github.com/Lt-Henry): Ayuda con dbus
 - [alo-malvarez](https://es.stackoverflow.com/users/81450/alo-malbarez): Ayuda en lanzamiento cliente dbus desde udev
+- [RafaelAybar](https://github.com/RafaelAybar): Testeo de la herramienta en Fedora 27
