@@ -70,7 +70,7 @@ Al conectar y desconectar el pendrive, se emitirá una notificación indicando q
 ## Instalación
 
 Para instalar la herramienta, únicamente hay que descargar el repositorio y ejecutar el script de instalación.
-En el caso de las distribuciones que usan polkit < 0.106, también hay que instalar las dependencias del cliente dbus.
+En el caso de las distribuciones que usan polkit >= 0.106, también hay que instalar las dependencias del cliente dbus.
 
 - Instalación de dependencias
 
