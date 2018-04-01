@@ -111,7 +111,7 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 ## Distribuciones testeadas:
 ### Polkit < 0.106
 - Debian 9 y 10, GNOME (v0.105): :heavy_check_mark:
-- Debian 9 KDE (v105) :bangbang: : Encontrado [bug](https://github.com/AlmuHS/Pendrive_Reminder/issues/9) en bloqueo y desbloqueo de apagado
+- Debian 9 KDE (v0.105) :bangbang: : Encontrado [bug](https://github.com/AlmuHS/Pendrive_Reminder/issues/9) en bloqueo y desbloqueo de apagado
 - MAX 9 MadridLinux (v0.105)  :heavy_check_mark:
 - Bodhi Linux  :x:
 - Linux Mint Xfce: :heavy_check_mark:
