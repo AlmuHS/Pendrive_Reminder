@@ -19,6 +19,11 @@ filepath="/tmp/usbdevinfo"
 #Get list of users with graphic session started, and their active display 
 userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq) 
 
+if test -z $userdisplay
+then
+	userdisplay="$(who | cut -d " " -f 1 | uniq);:0"	 
+fi
+
 polkit_version=$(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2)
 
 #if watchdog file exists
