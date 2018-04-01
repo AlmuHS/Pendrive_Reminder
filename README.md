@@ -110,7 +110,8 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 
 ## Distribuciones testeadas:
 ### Polkit < 0.106
-- Debian 9 y 10 (v0.105) :heavy_check_mark: : Probada en entornos GNOME y KDE  
+- Debian 9 y 10, GNOME (v0.105): :heavy_check_mark:
+- Debian 9 KDE (v105) :bangbang: : Encontrado [bug](https://github.com/AlmuHS/Pendrive_Reminder/issues/9) en bloqueo y desbloqueo de apagado
 - MAX 9 MadridLinux (v0.105)  :heavy_check_mark:
 - Bodhi Linux  :x:
 - Linux Mint Xfce: :heavy_check_mark:
@@ -120,8 +121,8 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 
 ### Polkit >= 0.106
 - Gentoo (v0.106) :heavy_check_mark: : Probada en entorno Cinnamon, con sistema de inicio OpenRC
-- Arch Linux (v0.115)  :bangbang: : Probada en entorno KDE
-- Fedora 27: :heavy_check_mark: : Probada en GNOME bajo Xorg y Wayland. Pequeño [bug](https://github.com/AlmuHS/Pendrive_Reminder/issues/8) en Wayland
+- Arch Linux (v0.115)  :bangbang: : Probada en entorno KDE. Encontrado [bug](https://github.com/AlmuHS/Pendrive_Reminder/issues/7)
+- Fedora 27: :heavy_check_mark: : Probada en GNOME bajo Xorg y Wayland. Pequeño [bug](https://github.com/AlmuHS/Pendrive_Reminder/issues/8) en Wayland al mostrar notificaciones
 
 (En desarrollo)
 
