@@ -46,6 +46,7 @@ then
 				kill -9 $pid
 			done < /tmp/pid_dbus
 
+			#Remove temporary file
 			rm /tmp/pid_dbus
 			
 			#Send notification to user
