@@ -52,11 +52,12 @@ Dadas las diferencias entre distribuciones y/o entornos de escritorio, estas reg
 
 ### Dbus
 
-Para que polkit pueda envíar una notificación al usuario, se usará un servidor dbus (`org.preminder`), al cual estará conectado un cliente (`client.py`) propiedad del usuario.
+Para que polkit pueda envíar una notificación al usuario, se usará un servidor dbus (`org.preminder`), al cual estará conectado un cliente [`client.py`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/dbus-client/client.py) propiedad del usuario.
 
 De esta forma, cuando polkit deniegue el permiso para apagar el sistema, el script [`send_notify.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/send_notify.sh) enviará una señal, usando el bus del sistema, al servicio `org.preminder`. El cliente de este servicio recibirá la señal y mostrará el mensaje al usuario.
 
-El cliente dbus será lanzado por el script `usbdevinserted.sh`, asociado a la regla udev [`10-usbmount.rules`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/udev-rules/10-usbmount.rules)
+El cliente dbus será lanzado por el script [`usbdevinserted.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevinserted.sh), asociado a la regla udev [`10-usbmount.rules`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/udev-rules/10-usbmount.rules); y posteriormente eliminado por [`usbdevgone.sh`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/aux_scripts/usbdevgone.sh), asociado a la regla udev [`11-usbdisconnect.rules
+`](https://github.com/AlmuHS/Pendrive_Reminder/blob/master/udev-rules/11-usbdisconnect.rules)
 
 
 ## Comportamiento
@@ -101,7 +102,7 @@ En el caso de las distribuciones que usan polkit >= 0.106, también hay que inst
 
 ### Directorios de instalación
 
-Los scripts se copiarán en el directorio `/usr/bin/pendrive-reminder`. 
+Los scripts y el cliente dbus se copiarán en el directorio `/usr/bin/pendrive-reminder`. 
 
 La regla polkit se copiará en `/usr/share/polkit-1/rules.d/` en caso de polkit >= 0.106. 
 En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/bin/pendrive-reminder` y, una vez conectado el pendrive, se copiará a `/etc/polkit-1/localauthority/50-local.d/`, de donde se borrará una vez se desconecte el pendrive
