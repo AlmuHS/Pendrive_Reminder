@@ -78,15 +78,15 @@ En el caso de las distribuciones que usan polkit >= 0.106, también hay que inst
 
     - **Fedora**:
      
-      `sudo dnf install dbus-python pygobject3 python3-gobject at`
+      `sudo dnf install dbus-python pygobject3 python3-gobject at libnotify`
 
     - **Arch Linux**:
 
-      `sudo pacman -S python-dbus python-gobject at`
+      `sudo pacman -S python-dbus python-gobject at libnotify`
 
     - **Gentoo**:
  
-      `sudo emerge -a dev-python/dbus-python dev-python/pygobject sys-process/at`
+      `sudo emerge -a dev-python/dbus-python dev-python/pygobject sys-process/at x11-libs/libnotify`
 
 
 - Para descargar, se puede usar `git` con el comando:
