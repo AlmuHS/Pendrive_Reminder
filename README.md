@@ -15,6 +15,7 @@ El funcionamiento es muy simple: si intentas apagar el ordenador con el pendrive
 - Python 3
     - python-dbus
     - pygobject
+ - at
 
 ## Implementación
 
@@ -75,15 +76,15 @@ En el caso de las distribuciones que usan polkit < 0.106, también hay que insta
 
     - **Fedora**:
      
-      `sudo dnf install dbus-python pygobject3 python3-gobject`
+      `sudo dnf install dbus-python pygobject3 python3-gobject at`
 
     - **Arch Linux**:
 
-      `sudo pacman -S python-dbus python-gobject`
+      `sudo pacman -S python-dbus python-gobject at`
 
     - **Gentoo**:
  
-      `sudo emerge -a dev-python/dbus-python dev-python/pygobject`
+      `sudo emerge -a dev-python/dbus-python dev-python/pygobject sys-process/at`
 
 
 - Para descargar, se puede usar `git` con el comando:
