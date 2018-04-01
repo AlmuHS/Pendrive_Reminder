@@ -19,6 +19,8 @@ filepath="/tmp/usbdevinfo"
 #Get list of users with graphic session started, and their active display 
 userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq) 
 
+polkit_version=$(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2)
+
 #if watchdog file exists
 if test -f $filepath
 then
@@ -31,6 +33,20 @@ then
 		#if file is empty, remove it
 		rm -f $filepath
 
+
+		#if polkit version >= 106, kill all dbus clients
+		if test $polkit_version -ge 106
+		then
+			
+			while read pid
+			do
+				kill -9 $pid
+			done < /tmp/pid_dbus
+
+			#Remove temporary file
+			rm /tmp/pid_dbus
+		fi
+
 		#Notify all connected users
 		for element in $userdisplay
 		do
@@ -39,15 +55,6 @@ then
 
 			#get display active of this user		
 			export DISPLAY=$(echo $element | cut -d ";" -f 2)
-
-			#Kill all dbus clients
-			while read pid
-			do
-				kill -9 $pid
-			done < /tmp/pid_dbus
-
-			#Remove temporary file
-			rm /tmp/pid_dbus
 			
 			#Send notification to user
 			su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer"'
@@ -56,8 +63,11 @@ then
 
 fi
 
+
+
+
 #if watchdog file don't exists and polkit version is < 0.106, remove pkla file to disable polkit rule
-if ! test -f $filepath && test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -lt 106
+if ! test -f $filepath && test $polkit_version -lt 106
 then
 	rm /etc/polkit-1/localauthority/50-local.d/50-inhibit-shutdown.pkla 2>/dev/null
 	service polkit restart
