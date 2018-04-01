@@ -54,9 +54,12 @@ then
 		then
 			#To avoid udev lock after launch dbus client, launch client as task
 
-			#Creates a temporally file, with commands to launch in the task 
+			#Creates a temporary file, with commands to launch in the task 
 			echo "export DISPLAY=$DISPLAY" > at_task		
-			echo "/usr/bin/pendrive-reminder/client.py" >> at_task						
+			echo '/usr/bin/pendrive-reminder/client.py &' >> at_task
+
+			#creates another temporary file, to save pid of dbus clients
+			echo 'echo $! >> /tmp/pid_dbus' >> at_task
 			
 			#Launch task with at command
 			su $user -c 'at -f at_task now'

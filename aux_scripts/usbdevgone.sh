@@ -40,6 +40,14 @@ then
 			#get display active of this user		
 			export DISPLAY=$(echo $element | cut -d ";" -f 2)
 
+			#Kill all dbus clients
+			while read pid
+			do
+				kill -9 $pid
+			done < /tmp/pid_dbus
+
+			rm /tmp/pid_dbus
+			
 			#Send notification to user
 			su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer"'
 		done
