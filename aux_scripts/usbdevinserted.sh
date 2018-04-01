@@ -52,7 +52,14 @@ then
 		#if polkit version >=106, also launch dbus client
 		if test $polkit_version -ge 106
 		then
-			su $user -c '/usr/bin/pendrive-reminder/client.py &>/dev/null' & | at now
+			#To avoid udev lock after launch dbus client, launch client as task
+
+			#Creates a temporally file, with commands to launch in the task 
+			echo "export DISPLAY=$DISPLAY" > at_task		
+			echo "/usr/bin/pendrive-reminder/client.py" >> at_task						
+			
+			#Launch task with at command
+			su $user -c 'at -f at_task now'
 		fi
 	done
 fi
