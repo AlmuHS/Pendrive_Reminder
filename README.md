@@ -77,6 +77,10 @@ En el caso de las distribuciones que usan polkit >= 0.106, también hay que inst
 
 - Instalación de dependencias
 
+    - **Debian/Ubuntu**:
+    
+     `sudo apt install libnotify-bin policykit-1`
+
     - **Fedora**:
      
       `sudo dnf install dbus-python pygobject3 python3-gobject at libnotify`
