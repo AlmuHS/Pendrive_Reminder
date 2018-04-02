@@ -77,9 +77,9 @@ En el caso de las distribuciones que usan polkit >= 0.106, también hay que inst
 
 - Instalación de dependencias
 
-    - **Debian/Ubuntu**:
+    - **Debian/Ubuntu (y derivados)**:
     
-     `sudo apt install libnotify-bin policykit-1`
+        `sudo apt install libnotify-bin policykit-1`
 
     - **Fedora**:
      
