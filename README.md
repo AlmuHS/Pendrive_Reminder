@@ -139,3 +139,4 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 - [acaso](https://github.com/acaso), [Lt-Henry](https://github.com/Lt-Henry): Ayuda con dbus
 - [alo-malvarez](https://es.stackoverflow.com/users/81450/alo-malbarez): Ayuda en lanzamiento cliente dbus desde udev
 - [RafaelAybar](https://github.com/RafaelAybar): Testeo de la herramienta en Fedora 27
+- [RicardoMoreno](https://github.com/RicardoMoreno): Testeo de la herramienta en Debian 9 KDE
