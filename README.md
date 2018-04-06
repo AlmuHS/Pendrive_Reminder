@@ -121,6 +121,7 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 - Linux Mint Xfce: :heavy_check_mark:
 - Guadalinex Edu Slim :heavy_check_mark: : Entorno de escritorio LXDE 
 - Lubuntu 14.04.1: :heavy_check_mark:
+- Ubuntu 17.10.1 :x:
 
 (En desarrollo)
 
