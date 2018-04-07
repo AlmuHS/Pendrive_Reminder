@@ -80,6 +80,10 @@ En el caso de las distribuciones que usan polkit >= 0.106, también hay que inst
     - **Debian/Ubuntu (y derivados)**:
     
         `sudo apt install libnotify-bin policykit-1`
+	
+    - **Ubuntu (17.10 en adelante)**:
+    
+       `sudo apt install libnotify-bin policykit-1 udev`        
 
     - **Fedora**:
      
