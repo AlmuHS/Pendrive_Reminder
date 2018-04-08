@@ -148,3 +148,4 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 - [RafaelAybar](https://github.com/RafaelAybar): Testeo de la herramienta en Fedora 27
 - [RicardoMoreno](https://github.com/RicardoMoreno): Testeo de la herramienta en Debian 9 KDE
 - [homero10](https://github.com/homero10): Testeo de la herramienta en Guadalinex y Ubuntu 17.10
+- [Makova](https://github.com/Makova): Testeo de la herramienta en Ubuntu 18.04
