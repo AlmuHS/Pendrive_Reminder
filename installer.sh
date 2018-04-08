@@ -34,9 +34,10 @@ fi
 
 #check linux distribution
 distro=$(grep '^ID=' /etc/os-release | cut -d = -f 2)
+version=$(grep "VERSION_ID" /etc/os-release | cut -d "=" -f 2)
 
 #if distribution is Ubuntu or Linux Mint, restart udev
-if test "$distro" = "ubuntu" || test "$distro" = "linuxmint"
+if test "$distro" = "ubuntu" && test "$version" = "\"17.10\""
 then
 	systemctl restart udev
 fi

@@ -14,14 +14,20 @@ then
 		rm $pklapath
 		service polkit restart
 	fi
-fi
-#check linux distribution
-distro=$(grep '^ID=' /etc/os-release | cut -d = -f 2)
 
-if test "$distro" = "ubuntu"
-then
-	#Restart udev
-	systemctl restart udev
+       #check linux distribution and version
+	distro=$(grep '^ID=' /etc/os-release | cut -d = -f 2)
+	version=$(grep "VERSION_ID" /etc/os-release | cut -d "=" -f 2)
+
+	if test $distro = "ubuntu" && test $version = "\"17.10\""
+	then
+		#Restart udev
+		systemctl restart udev
+	fi
+
+	
+
 fi
+
 
 
