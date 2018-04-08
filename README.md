@@ -81,7 +81,7 @@ En el caso de las distribuciones que usan polkit >= 0.106, también hay que inst
     
         `sudo apt install libnotify-bin policykit-1`
 	
-    - **Ubuntu (17.10 en adelante)**:
+    - **Ubuntu 17.10**:
     
        `sudo apt install libnotify-bin policykit-1 udev`        
 
@@ -125,7 +125,8 @@ En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/b
 - Linux Mint Xfce: :heavy_check_mark:
 - Guadalinex Edu Slim :heavy_check_mark: : Entorno de escritorio LXDE 
 - Lubuntu 14.04.1: :heavy_check_mark:
-- Lubuntu 17.10.1 :heavy_check_mark:
+- Lubuntu 17.10.1: :heavy_check_mark:
+- Ubuntu 18.04: :heavy_check_mark: : Probado en GNOME bajo Xorg
 
 (En desarrollo)
 
