@@ -115,6 +115,18 @@ Los scripts y el cliente dbus se copiarán en el directorio `/usr/bin/pendrive-r
 La regla polkit se copiará en `/usr/share/polkit-1/rules.d/` en caso de polkit >= 0.106. 
 En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/bin/pendrive-reminder` y, una vez conectado el pendrive, se copiará a `/etc/polkit-1/localauthority/50-local.d/`, de donde se borrará una vez se desconecte el pendrive
 
+## Desinstalación
+
+Para desinstalar la aplicación, simplemente hay que irse al directorio donde se ha descargado la herramienta, y ejecutar:
+
+    sudo ./uninstaller.sh
+
+El desinstalador eliminará el directorio de instalación y todos los ficheros de reglas existentes en el sistema.
+
+La desinstalación se puede realizar "en caliente", mientras la herramienta está activa. 
+En dicho caso, el desinstalador, además de lo anterior, también eliminará todos los ficheros temporales creados, el fichero de autorización, y matará todos los procesos iniciados por la herramienta. 
+
+Las dependencias, instaladas de forma previa a la instalación, NO serán eliminadas.
 
 ## Distribuciones testeadas:
 ### Polkit < 0.106
