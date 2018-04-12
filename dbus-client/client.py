@@ -12,8 +12,8 @@ import gettext
 dbus_loop = DBusGMainLoop(set_as_default=True)
 bus = dbus.SystemBus(mainloop=dbus_loop)
 loop = GLib.MainLoop()
-es = gettext.translation('client', localedir='locale')
-es.install()
+linguas = gettext.translation('client', localedir='locale')
+linguas.install()
 
 
 def msg_handler(*args,**keywords):
