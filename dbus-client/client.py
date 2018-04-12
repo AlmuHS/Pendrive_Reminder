@@ -7,16 +7,21 @@ from gi.repository import GLib
 from gi.repository import Notify
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
+import gettext
 
 dbus_loop = DBusGMainLoop(set_as_default=True)
 bus = dbus.SystemBus(mainloop=dbus_loop)
 loop = GLib.MainLoop()
+es = gettext.translation('client', localedir='locale')
+es.install()
+
 
 def msg_handler(*args,**keywords):
     try:
         #show notification to desktop
         Notify.init('Pendrive Reminder')
-        notify = Notify.Notification.new('Pendrive Reminder', 'Shutdown lock enabled. Disconnect pendrive to enable shutdown')
+        notify = Notify.Notification.new('Pendrive Reminder', _('Shutdown lock enabled. Disconnect pendrive to enable shutdown'))
+        print(_('Shutdown lock enabled. Disconnect pendrive to enable shutdown'))
         notify.show()
     except:
         pass
