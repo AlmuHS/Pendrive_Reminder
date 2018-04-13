@@ -17,14 +17,15 @@ set 2>&1 | grep DEVPATH | cut -d "=" -f 2 >> /tmp/usbdevinfo
 INSTALL_DIR="/usr/bin/pendrive-reminder"
 
 #Get system language
-LANG=$(grep LANG /etc/env.d/02locale | cut -d "=" -f 2)
+LANG=(grep LANG $INSTALL_DIR/var | cut -d "=" -f 2)
 
 #Get list of users with graphic session started, and their active display 
 userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq)
 
 if test -z $userdisplay
 then
-	userdisplay="$(who | cut -d " " -f 1 | uniq);:0"	 
+	disp=$(grep DISPLAY $INSTALL_DIR/var | cut -d "=" -f 2)
+	userdisplay="$(who | cut -d " " -f 1 | uniq);$disp"	 
 fi
 
 #Get polkit version

@@ -11,6 +11,9 @@ chmod +x $INSTALL_DIR/aux_scripts/*
 cp udev-rules/* /etc/udev/rules.d/
 udevadm control --reload-rules
 
+#Copy env variables into a auxiliar file
+echo "DISPLAY="$DISPLAY"" > $INSTALL_DIR/var
+echo "LANG="$LANG"" >> $INSTALL_DIR/var
 
 #Copy locale files
 LOCALE_LIST=$(find locale -name "*.mo")
@@ -38,7 +41,7 @@ else
 	cp polkit-rules/50-inhibit-shutdown.pkla $INSTALL_DIR
 
 	#Add cron task to remove shutdown lock after forced shutdown or reboot
-	(crontab -l 2>/dev/null; echo "@reboot $INSTALL_DIR/check_shutforced.sh") | crontab -
+	(crontab -l 2>/dev/null; echo "@reboot $INSTALL_DIR/aux_scripts/check_shutforced.sh") | crontab -
 fi
 
 #check linux distribution
