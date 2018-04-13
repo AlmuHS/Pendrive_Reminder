@@ -7,31 +7,21 @@ from gi.repository import GLib
 from gi.repository import Notify
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
+import gettext
 import logging
 import logging.config
-import pathlib
-import sys
 
-file = open('/home/almu/path.log', "w")
 logging.basicConfig(filename='/home/almu/gettext.log')
 logger = logging.getLogger(__name__)
-
-file.write(str(sys.path))
 
 #Start dbus mainloop
 dbus_loop = DBusGMainLoop(set_as_default=True)
 bus = dbus.SystemBus(mainloop=dbus_loop)
 loop = GLib.MainLoop()
 
-try:
-    import gettext
-except Exception as exec:
-    logger.exception(exec)
-
-
 #Install locale support
 try:
-    linguas = gettext.translation('preminder', localedir='/usr/share/locale', languages=['es'])
+    linguas = gettext.translation('preminder', localedir='/usr/share/locale')
 except Exception as exec:
     logger.exception(exec)
 

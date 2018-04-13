@@ -16,6 +16,8 @@ set 2>&1 | grep DEVPATH | cut -d "=" -f 2 >> /tmp/usbdevinfo
 #Path to installation directory
 INSTALL_DIR="/usr/bin/pendrive-reminder"
 
+#Get system language
+LANG=$(grep LANG /etc/env.d/02locale | cut -d "=" -f 2)
 
 #Get list of users with graphic session started, and their active display 
 userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq)
@@ -31,7 +33,6 @@ polkit_version=$(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2)
 #In polkit version < 0.106, the rules file don't run, so we need to copy authority files
 if test $polkit_version -lt 106
 then
-
 	#Check is pkla file exists in localauthority directory	
 	if ! test -f /etc/polkit-1/localauthority/50-local.d/50-inhibit-shutdown.pkla
 	then
@@ -61,7 +62,8 @@ then
 			#To avoid udev lock after launch dbus client, launch client as task
 
 			#Creates a temporary file, with commands to launch in the task 
-			echo "export DISPLAY=$DISPLAY" > at_task		
+			echo "export DISPLAY=$DISPLAY" > at_task
+			echo "export LANG=$LANG" >> at_task
 			echo '/usr/bin/pendrive-reminder/dbus-client/client.py &' >> at_task
 
 			#creates another temporary file, to save pid of dbus clients
