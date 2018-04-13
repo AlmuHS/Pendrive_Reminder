@@ -11,6 +11,15 @@ chmod +x $INSTALL_DIR/aux_scripts/*
 cp udev-rules/* /etc/udev/rules.d/
 udevadm control --reload-rules
 
+
+#Copy locale files
+LOCALE_LIST=$(find locale -name "*.mo")
+
+for locale in $LOCALE_LIST
+do
+	cp $locale /usr/share/$locale
+done
+
 #Copy polkit rules
 
 #If polkit version is >= 0.106
