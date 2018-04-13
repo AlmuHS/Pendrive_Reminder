@@ -4,8 +4,8 @@ INSTALL_DIR="/usr/bin/pendrive-reminder"
 
 #Copy auxiliar scripts
 mkdir $INSTALL_DIR 2>/dev/null
-cp aux_scripts/* $INSTALL_DIR
-chmod +x $INSTALL_DIR/*.sh
+cp -r aux_scripts/ $INSTALL_DIR
+chmod +x $INSTALL_DIR/aux_scripts/*
 
 #copy udev rules and recharge udev
 cp udev-rules/* /etc/udev/rules.d/
@@ -20,8 +20,8 @@ then
 	cp polkit-rules/10-inhibit-shutdown.rules /usr/share/polkit-1/rules.d/
 
 	#copy dbus-client
-	cp dbus-client/* $INSTALL_DIR
-	chmod ugo+x $INSTALL_DIR/client.py
+	cp -r dbus-client/ $INSTALL_DIR
+	chmod ugo+x $INSTALL_DIR/dbus-client/client.py
 
 #If polkit version is < 0.106
 else
