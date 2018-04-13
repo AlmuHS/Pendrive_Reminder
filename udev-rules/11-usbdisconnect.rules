@@ -1,2 +1,2 @@
-SUBSYSTEM=="usb", ACTION=="unbind", RUN+="/usr/bin/pendrive-reminder/usbdevgone.sh $devpath"
-SUBSYSTEM=="usb", ACTION=="remove", RUN+="/usr/bin/pendrive-reminder/usbdevgone.sh $devpath"
+SUBSYSTEM=="usb", ACTION=="unbind", RUN+="/usr/bin/pendrive-reminder/aux_scripts/usbdevgone.sh $devpath"
+SUBSYSTEM=="usb", ACTION=="remove", RUN+="/usr/bin/pendrive-reminder/aux_scripts/usbdevgone.sh $devpath"
