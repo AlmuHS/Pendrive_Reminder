@@ -16,6 +16,7 @@ set 2>&1 | grep DEVPATH | cut -d "=" -f 2 >> /tmp/usbdevinfo
 #Path to installation directory
 INSTALL_DIR="/usr/bin/pendrive-reminder"
 
+
 #Get list of users with graphic session started, and their active display 
 userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq)
 
@@ -61,7 +62,7 @@ then
 
 			#Creates a temporary file, with commands to launch in the task 
 			echo "export DISPLAY=$DISPLAY" > at_task		
-			echo "$INSTALL_DIR/dbus-client/client.py &" >> at_task
+			echo '/usr/bin/pendrive-reminder/dbus-client/client.py &' >> at_task
 
 			#creates another temporary file, to save pid of dbus clients
 			echo 'echo $! >> /tmp/pid_dbus' >> at_task
