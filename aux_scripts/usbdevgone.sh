@@ -21,7 +21,8 @@ userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" subs
 
 if test -z $userdisplay
 then
-	userdisplay="$(who | cut -d " " -f 1 | uniq);:0"	 
+	disp=$(grep DISPLAY $INSTALL_DIR/var | cut -d "=" -f 2)
+	userdisplay="$(who | cut -d " " -f 1 | uniq);$disp" 
 fi
 
 polkit_version=$(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2)
