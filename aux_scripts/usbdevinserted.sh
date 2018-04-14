@@ -19,6 +19,13 @@ INSTALL_DIR="/usr/bin/pendrive-reminder"
 #Get system language
 LANG=$(grep LANG $INSTALL_DIR/var | cut -d "=" -f 2)
 
+#Export env variables for gettext
+export TEXTDOMAIN="preminder"
+export TEXTDOMAINDIR=/usr/share/locale
+export LANG=$LANG
+
+. gettext.sh
+
 #Get list of users with graphic session started, and their active display 
 userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq)
 
@@ -46,6 +53,10 @@ fi
 #When first usb device is connected
 if test $(wc -l /tmp/usbdevinfo | cut -d " " -f 1) -eq 1
 then	
+	#get message translation
+	export message1=$(gettext "Shutdown lock enabled. ")
+	export message2=$(gettext "The shutdown will be unlocked when pendrive is disconnected")
+
 	#for each user, show notification and (only in polkit >= 106) launch dbus client 
 	for element in $userdisplay
 	do			
@@ -53,10 +64,11 @@ then
 		user=$(echo $element | cut -d ";" -f 1)
 		
 		#get display active of this user		
-		export DISPLAY=$(echo $element | cut -d ";" -f 2)
+		export DISPLAY=$(echo $element | cut -d ";" -f 2)		
 		
-		#Send notification to user
-		su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock enabled. The shutdown will be unlocked when pendrive is disconnected"'
+		#Show notification translated
+		su $user -c 'notify-send "Pendrive Reminder" "$message1 $message2"'
+
 		#if polkit version >=106, also launch dbus client
 		if test $polkit_version -ge 106
 		then

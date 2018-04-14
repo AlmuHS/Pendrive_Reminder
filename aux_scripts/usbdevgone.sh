@@ -13,6 +13,9 @@
 #USB Device identifier
 devpath=$1 
 
+#Path to installation directory
+INSTALL_DIR="/usr/bin/pendrive-reminder"
+
 #Path to USB watchdog file
 filepath="/tmp/usbdevinfo"
 
@@ -26,6 +29,17 @@ then
 fi
 
 polkit_version=$(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2)
+
+
+#Get system language
+LANG=$(grep LANG $INSTALL_DIR/var | cut -d "=" -f 2)
+
+#Export env variables for gettext
+export TEXTDOMAIN="preminder"
+export TEXTDOMAINDIR=/usr/share/locale
+export LANG=$LANG
+
+. gettext.sh
 
 #if watchdog file exists
 if test -f $filepath
@@ -53,6 +67,10 @@ then
 			rm /tmp/pid_dbus
 		fi
 
+		#Get message translation
+		export message1=$(gettext "Shutdown lock disabled. ")
+		export message2=$(gettext "Now you can shutdown your computer")
+
 		#Notify all connected users
 		for element in $userdisplay
 		do
@@ -62,8 +80,8 @@ then
 			#get display active of this user		
 			export DISPLAY=$(echo $element | cut -d ";" -f 2)
 			
-			#Send notification to user
-			su $user -c 'notify-send "Pendrive Reminder" "Shutdown lock disabled. Now you can shutdown your computer"'
+			#Send notification translated
+			su $user -c 'notify-send "Pendrive Reminder" "$message1 $message2"'
 		done
 	fi
 

@@ -1,6 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR ORGANIZATION
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Translation for Pendrive Reminder
+# Copyright (C) 2018
+# Almudena Garcia Jurado-Centurion, 2018
 #
 msgid ""
 msgstr ""
@@ -19,3 +19,18 @@ msgstr ""
 msgid "Shutdown lock enabled. Disconnect pendrive to enable shutdown"
 msgstr ""
 
+#: aux_scripts/usbdevinserted.sh:57
+msgid "Shutdown lock enabled. "
+msgstr ""
+
+#: aux_scripts/usbdevinserted.sh:58
+msgid "The shutdown will be unlocked when pendrive is disconnected"
+msgstr ""
+
+#: aux_scripts/usbdevgone.sh:68
+msgid "Shutdown lock disabled. "
+msgstr ""
+
+#: aux_scripts/usbdevgone.sh:69
+msgid "Now you can shutdown your computer"
+msgstr ""
