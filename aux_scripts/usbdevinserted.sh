@@ -11,7 +11,8 @@
 
 #Copy USB identifier in usbdevinfo watchdog file.
 #This file will be used to detect if there are any usb storage device connected to the machine
-set 2>&1 | grep DEVPATH | cut -d "=" -f 2 >> /tmp/usbdevinfo
+DEVPATH=$1
+echo $DEVPATH >> /tmp/usbdevinfo
 
 #Path to installation directory
 INSTALL_DIR="/usr/bin/pendrive-reminder"
