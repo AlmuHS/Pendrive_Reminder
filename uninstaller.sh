@@ -9,6 +9,9 @@ udev_files=$(ls udev-rules)
 cd /etc/udev/rules.d/
 rm $udev_files
 
+#Remove locale files
+find /usr/share/locale/ -name "preminder*" -delete
+
 #If polkit version is >= 0.106, remove rules and policy file	
 if test $(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2) -ge 106
 then
