@@ -39,8 +39,6 @@ export TEXTDOMAIN="preminder"
 export TEXTDOMAINDIR=/usr/share/locale
 export LANG=$LANG
 
-. gettext.sh
-
 #if watchdog file exists
 if test -f $filepath
 then

@@ -25,8 +25,6 @@ export TEXTDOMAIN="preminder"
 export TEXTDOMAINDIR=/usr/share/locale
 export LANG=$LANG
 
-. gettext.sh
-
 #Get list of users with graphic session started, and their active display 
 userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq)
 
