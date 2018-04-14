@@ -16,10 +16,12 @@ bus = dbus.SystemBus(mainloop=dbus_loop)
 loop = GLib.MainLoop()
 
 #Install locale support
+try:
+    linguas = gettext.translation('preminder', localedir='/usr/share/locale')    
+except:
+    linguas = gettext.translation('preminder', localedir='/usr/share/locale', languages=['en'])
 
-linguas = gettext.translation('preminder', localedir='/usr/share/locale')
 linguas.install()
-
 
 def msg_handler(*args,**keywords):
     try:
