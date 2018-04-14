@@ -16,12 +16,7 @@ echo "DISPLAY="$DISPLAY"" > $INSTALL_DIR/var
 echo "LANG="$LANG"" >> $INSTALL_DIR/var
 
 #Copy locale files
-LOCALE_LIST=$(find locale -name "*.mo")
-
-for locale in $LOCALE_LIST
-do
-	cp $locale /usr/share/$locale
-done
+cp -r locale/* /usr/share/locale/
 
 #Copy polkit rules
 
