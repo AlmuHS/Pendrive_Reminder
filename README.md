@@ -7,8 +7,8 @@ El funcionamiento es muy simple: si intentas apagar el ordenador con el pendrive
 
 ## Requisitos
 - Sistema Operativo GNU/Linux
-- Polkit
-- Udev
+- polkit
+- udev
 - libnotify
 - cron (solo si la versión de Polkit es < 0.106)
 - dbus
@@ -16,6 +16,7 @@ El funcionamiento es muy simple: si intentas apagar el ordenador con el pendrive
     - python-dbus
     - pygobject
  - at
+ - gettext
 
 ## Implementación
 
