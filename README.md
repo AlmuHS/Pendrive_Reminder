@@ -70,6 +70,10 @@ Además, si la versión de polkit es >= 0.106, al abrir el menú de apagado con 
 En todos los casos, el sistema volverá a la normalidad, desbloqueando el apagado, al desconectar el pendrive.
 Al conectar y desconectar el pendrive, se emitirá una notificación indicando que el bloqueo de apagado se ha activado o desactivado
 
+### Localización
+
+La herramienta cuenta con soporte de localización en diferentes idiomas. Cuando la herramienta se instale, detectará el idioma del sistema y lo utilizará como lengua por defecto para las notificaciones. En caso de no disponer de traducción para dicho idioma, la herramienta seleccionará inglés como idioma principal.
+
 ## Instalación
 
 Para instalar la herramienta, únicamente hay que descargar el repositorio y ejecutar el script de instalación.
@@ -113,7 +117,9 @@ En el caso de las distribuciones que usan polkit >= 0.106, también hay que inst
 Los scripts y el cliente dbus se copiarán en el directorio `/usr/bin/pendrive-reminder`. 
 
 La regla polkit se copiará en `/usr/share/polkit-1/rules.d/` en caso de polkit >= 0.106. 
-En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/bin/pendrive-reminder` y, una vez conectado el pendrive, se copiará a `/etc/polkit-1/localauthority/50-local.d/`, de donde se borrará una vez se desconecte el pendrive
+En caso de polkit < 0.106, el fichero .pkla se ubicará temporalmente en `/usr/bin/pendrive-reminder` y, una vez conectado el pendrive, se copiará a `/etc/polkit-1/localauthority/50-local.d/`, de donde se borrará una vez se desconecte el pendrive.
+
+Las locales se instalarán en `/usr/share/locales`, dentro del subdirectorio del idioma correspondiente
 
 ## Desinstalación
 
@@ -121,7 +127,7 @@ Para desinstalar la aplicación, simplemente hay que irse al directorio donde se
 
     sudo ./uninstaller.sh
 
-El desinstalador eliminará el directorio de instalación y todos los ficheros de reglas existentes en el sistema.
+El desinstalador eliminará el directorio de instalación y todos los ficheros de reglas y locales existentes en el sistema.
 
 La desinstalación se puede realizar "en caliente", mientras la herramienta está activa. 
 En dicho caso, el desinstalador, además de lo anterior, también eliminará todos los ficheros temporales creados, el fichero de autorización, y matará todos los procesos iniciados por la herramienta. 
