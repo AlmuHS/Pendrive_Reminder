@@ -74,6 +74,13 @@ Al conectar y desconectar el pendrive, se emitirá una notificación indicando q
 
 La herramienta cuenta con soporte de localización en diferentes idiomas. Cuando la herramienta se instale, detectará el idioma del sistema y lo utilizará como lengua por defecto para las notificaciones. En caso de no disponer de traducción para dicho idioma, la herramienta seleccionará inglés como idioma principal.
 
+### Accesibilidad
+
+La herramienta también cuenta con soporte para asistentes de accesibilidad, como lectores de pantalla (probado con el lector de pantalla Orca), letras grandes y pantalla ampliada.
+
+La localización permite que el texto sea leído en el mismo idioma del usuario, lo cual ayuda a entender mejor el mensaje a través de asistentes como el lector de pantalla.
+
+
 ## Instalación
 
 Para instalar la herramienta, únicamente hay que descargar el repositorio y ejecutar el script de instalación.
