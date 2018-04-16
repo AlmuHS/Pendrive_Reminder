@@ -1,0 +1,38 @@
+# Translation for Pendrive Reminder
+# Copyright (C) 2018
+# Almudena Garcia Jurado-Centurion, 2018
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-04-13 22:51+CEST\n"
+"PO-Revision-Date: 2018-04-16 16:10+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 2.0.6\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: pt\n"
+
+#: dbus-client/client.py:45
+msgid "Shutdown lock enabled. Disconnect pendrive to enable shutdown"
+msgstr "Bloqueio de encerramento activado. Remova a pen drive para permitir o encerramento"
+
+#: aux_scripts/usbdevinserted.sh:57
+msgid "Shutdown lock enabled. "
+msgstr "Bloqueio de encerramento activado"
+
+#: aux_scripts/usbdevinserted.sh:58
+msgid "The shutdown will be unlocked when pendrive is disconnected"
+msgstr "O encerramento será desbloqueado quando a pen drive for removida"
+
+#: aux_scripts/usbdevgone.sh:68
+msgid "Shutdown lock disabled. "
+msgstr "Bloqueio de encerramento desactivado"
+
+#: aux_scripts/usbdevgone.sh:69
+msgid "Now you can shutdown your computer"
+msgstr "Agora pode encerrar o computador"
