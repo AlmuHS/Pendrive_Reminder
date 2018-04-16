@@ -175,4 +175,4 @@ Las dependencias, instaladas de forma previa a la instalación, NO serán elimin
 - [RicardoMoreno](https://github.com/RicardoMoreno): Testeo de la herramienta en Debian 9 KDE
 - [homero10](https://github.com/homero10): Testeo de la herramienta en Guadalinex y Ubuntu 17.10
 - [Makova](https://github.com/Makova): Testeo de la herramienta en Ubuntu 18.04
-- [Foxandxss](https://github.com/Foxandxss): Sugerencias en localización, y ayuda con la misma
+- [javihernandez](https://github.com/javihernandez), [Foxandxss](https://github.com/Foxandxss): Sugerencias en localización, y ayuda con la misma
