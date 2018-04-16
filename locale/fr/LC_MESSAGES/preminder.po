@@ -19,7 +19,7 @@ msgstr ""
 
 #: dbus-client/client.py:45
 msgid "Shutdown lock enabled. Disconnect pendrive to enable shutdown"
-msgstr "Éteindre blocage activé. Débranche le pendrive pour éteindre"
+msgstr "Éteindre blocage activé. Débranche votre périphérique USB pour éteindre"
 
 #: aux_scripts/usbdevinserted.sh:57
 msgid "Shutdown lock enabled. "
@@ -27,7 +27,7 @@ msgstr "Éteindre blocage activé "
 
 #: aux_scripts/usbdevinserted.sh:58
 msgid "The shutdown will be unlocked when pendrive is disconnected"
-msgstr "Éteindre blocage sera débloqué aprés le pendrive est débranché"
+msgstr "Éteindre blocage sera débloqué aprés votre périphérique USB est débranché"
 
 #: aux_scripts/usbdevgone.sh:68
 msgid "Shutdown lock disabled "
@@ -35,4 +35,4 @@ msgstr "Éteindre blocage desactivé "
 
 #: aux_scripts/usbdevgone.sh:69
 msgid "Now you can shutdown your computer"
-msgstr "Maintenant tu peux éteindre ton ordinateur"
+msgstr "Vous pouvez maintenant éteindre votre ordinateur"
