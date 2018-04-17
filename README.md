@@ -82,6 +82,7 @@ Los idiomas actualmente soportados son:
 - Español
 - Neerlandés
 - Portugués
+- Italiano
 
 ### Accesibilidad
 
