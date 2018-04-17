@@ -181,7 +181,7 @@ Las dependencias, instaladas de forma previa a la instalación, NO serán elimin
 - [aledomu](https://github.com/aledomu): Ayuda con polkit
 - [alo-malvarez](https://es.stackoverflow.com/users/81450/alo-malbarez): Ayuda en lanzamiento cliente dbus desde udev
 - [RafaelAybar](https://github.com/RafaelAybar): Testeo de la herramienta en Fedora 27
-- [RicardoMoreno](https://github.com/RicardoMoreno): Testeo de la herramienta en Debian 9 KDE
+- [RicardoMoreno](https://github.com/RicardoMoreno): Testeo de la herramienta en Debian 9 KDE, traducción al italiano
 - [homero10](https://github.com/homero10): Testeo de la herramienta en Guadalinex y Ubuntu 17.10
 - [Makova](https://github.com/Makova): Testeo de la herramienta en Ubuntu 18.04
 - [javihernandez](https://github.com/javihernandez): Sugerencias y ayuda en localización
