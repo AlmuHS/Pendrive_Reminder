@@ -56,6 +56,11 @@ then
 	export message1=$(gettext "Shutdown lock enabled. ")
 	export message2=$(gettext "The shutdown will be unlocked when pendrive is disconnected")
 
+
+	#creates a temporary file, to save pid of dbus clients
+	touch /tmp/pid_dbus
+	chmod 406 /tmp/pid_dbus
+
 	#for each user, show notification and (only in polkit >= 106) launch dbus client 
 	for element in $userdisplay
 	do			
@@ -78,13 +83,18 @@ then
 			echo "export LANG=$LANG" >> at_task
 			echo '/usr/bin/pendrive-reminder/dbus-client/client.py &' >> at_task
 
-			#creates another temporary file, to save pid of dbus clients
 			echo 'echo $! >> /tmp/pid_dbus' >> at_task
 			
 			#Launch task with at command
 			su $user -c 'at -f at_task now'
 		fi
 	done
+
+	#delete at_task temporary file
+	rm at_task
+
+	#Set pid_dbus file in root read-only mode
+	chmod 400 /tmp/pid_dbus
 fi
 
 exit 0
