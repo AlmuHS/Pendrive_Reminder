@@ -71,14 +71,17 @@ then
 		#if polkit version >=106, also launch dbus client
 		if test $polkit_version -ge 106
 		then
-			#To avoid udev lock after launch dbus client, launch client as task
-
+			#To avoid udev lock after launch dbus client, launch client as tas
+			
 			#Creates a temporary file, with commands to launch in the task 
 			echo "export DISPLAY=$DISPLAY" > at_task
 			echo "export LANG=$LANG" >> at_task
 			echo '/usr/bin/pendrive-reminder/dbus-client/client.py &' >> at_task
 
 			#creates another temporary file, to save pid of dbus clients
+			echo "" > /tmp/pid_dbus
+			chmod 406 /tmp/pid_dbus
+			
 			echo 'echo $! >> /tmp/pid_dbus' >> at_task
 			
 			#Launch task with at command
@@ -88,6 +91,10 @@ then
 
 	#delete at_task temporary file
 	rm at_task
+
+	#Set pid_dbus file in root read-only mode
+	chmod 400 /tmp/pid_dbus
+	
 fi
 
 exit 0
