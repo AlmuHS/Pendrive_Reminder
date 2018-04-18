@@ -85,6 +85,9 @@ then
 			su $user -c 'at -f at_task now'
 		fi
 	done
+
+	#delete at_task temporary file
+	rm at_task
 fi
 
 exit 0
