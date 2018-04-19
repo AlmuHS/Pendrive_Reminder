@@ -97,9 +97,12 @@ then
 	then
 		#delete at_task temporary file
 		rm at_task
+	
+		#Get num of active users, to wait until all writes are done
+		num_users=${#userdisplay[@]}
 
 		#wait to write in the file
-		while ! test -s /tmp/pid_dbus
+		while test $(wc -l /tmp/pid_dbus | cut -d " " -f 1) -lt $num_users
 		do
 			:
 		done
