@@ -98,8 +98,8 @@ then
 		#delete at_task temporary file
 		rm at_task
 
-		#Set pid_dbus file in root read-only mode
-		chmod 400 /tmp/pid_dbus
+		#Set pid_dbus file in read-only mode
+		#chmod o-w /tmp/pid_dbus
 	fi
 fi
 
