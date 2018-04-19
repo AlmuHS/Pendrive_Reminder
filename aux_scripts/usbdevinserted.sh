@@ -83,6 +83,7 @@ then
 			echo "export LANG=$LANG" >> at_task
 			echo '/usr/bin/pendrive-reminder/dbus-client/client.py &' >> at_task
 
+			#creates another temporary file, to save pid of dbus clients
 			echo 'echo $! >> /tmp/pid_dbus' >> at_task
 			
 			#Launch task with at command
