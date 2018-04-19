@@ -58,8 +58,8 @@ then
 
 
 	#creates a temporary file, to save pid of dbus clients
-	touch /tmp/pid_dbus
-	chmod 406 /tmp/pid_dbus
+	#touch /tmp/pid_dbus
+	#chmod 406 /tmp/pid_dbus
 
 	#for each user, show notification and (only in polkit >= 106) launch dbus client 
 	for element in $userdisplay
@@ -96,6 +96,7 @@ then
 
 	#Set pid_dbus file in root read-only mode
 	chmod 400 /tmp/pid_dbus
+
 fi
 
 exit 0
