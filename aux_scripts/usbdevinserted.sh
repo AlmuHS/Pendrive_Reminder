@@ -30,16 +30,8 @@ userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" subs
 
 if test -z $userdisplay
 then
-	user="$(who | cut -d " " -f 1 | uniq)"
 	disp=$(grep DISPLAY $INSTALL_DIR/var | cut -d "=" -f 2)
-
-	userdisplay=""
-
-	for u in $user
-	do
-		userdisplay+=(" $u;$disp")
-	done
-		 
+	userdisplay=$(who | cut -d " " -f 1 | gawk -v var=$disp '{print $1 ";" var}')
 fi
 
 #Get polkit version
@@ -107,6 +99,7 @@ then
 		rm at_task
 	
 		#Get num of active users, to wait until all writes are done
+		userdisplay=( $userdisplay )
 		num_users=${#userdisplay[@]}
 
 		if test $num_users -eq 1
@@ -117,7 +110,7 @@ then
 			done			
 		else
 			#wait to write in the file
-			while test $(wc -l /tmp/pid_dbus | cut -d " " -f 1) -le $num_users		
+			while test $(wc -l /tmp/pid_dbus | cut -d " " -f 1) -lt $num_users		
 			do
 				:
 			done
