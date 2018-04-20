@@ -30,16 +30,8 @@ userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" subs
 
 if test -z $userdisplay
 then
-	user="$(who | cut -d " " -f 1 | uniq)"
 	disp=$(grep DISPLAY $INSTALL_DIR/var | cut -d "=" -f 2)
-
-	userdisplay=""
-
-	for u in $user
-	do
-		userdisplay+=(" $u;$disp")
-	done
-		 
+	userdisplay=$(who | cut -d " " -f 1 | gawk -v var=$disp '{print $1 ";" var}')
 fi
 
 #Get polkit version
@@ -107,24 +99,14 @@ then
 		rm at_task
 	
 		#Get num of active users, to wait until all writes are done
+		userdisplay=( $userdisplay )
 		num_users=${#userdisplay[@]}
 
-		#if there is a only user, only wait to file not empty
-		if test $num_users -eq 1
-		then
-			while ! test -s /tmp/pid_dbus		
-			do
-				:
-			done
-
-		#if there are many users, wait until will be written one line for each user			
-		else
-			while test $(wc -l /tmp/pid_dbus | cut -d " " -f 1) -le $num_users		
-			do
-				:
-			done
-		fi
-
+		#wait to write in the file
+		while test $(wc -l /tmp/pid_dbus | cut -d " " -f 1) -lt $num_users		
+		do
+			:
+		done
 
 		#Set pid_dbus file in root read-only mode
 		chmod 400 /tmp/pid_dbus
