@@ -37,7 +37,7 @@ then
 
 	for u in $user
 	do
-		userdisplay="$userdisplay $u;$disp"
+		userdisplay+=(" $u;$disp")
 	done
 		 
 fi
