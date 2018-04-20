@@ -95,9 +95,6 @@ then
 
 	if test $polkit_version -ge 106
 	then
-		#delete at_task temporary file
-		rm at_task
-	
 		#Get num of active users, to wait until all writes are done
 		userdisplay=( $userdisplay )
 		num_users=${#userdisplay[@]}
@@ -110,6 +107,9 @@ then
 
 		#Set pid_dbus file in root read-only mode
 		chmod 400 /tmp/pid_dbus
+
+		#delete at_task temporary file
+		rm at_task
 	fi
 fi
 
