@@ -101,14 +101,16 @@ then
 		#Get num of active users, to wait until all writes are done
 		num_users=${#userdisplay[@]}
 
+		#if there is a only user, only wait to file not empty
 		if test $num_users -eq 1
 		then
 			while ! test -s /tmp/pid_dbus		
 			do
 				:
-			done			
+			done
+
+		#if there are many users, wait until will be written one line for each user			
 		else
-			#wait to write in the file
 			while test $(wc -l /tmp/pid_dbus | cut -d " " -f 1) -le $num_users		
 			do
 				:
