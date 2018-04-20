@@ -102,20 +102,12 @@ then
 		userdisplay=( $userdisplay )
 		num_users=${#userdisplay[@]}
 
-		if test $num_users -eq 1
-		then
-			while ! test -s /tmp/pid_dbus		
-			do
-				:
-			done			
-		else
-			#wait to write in the file
-			while test $(wc -l /tmp/pid_dbus | cut -d " " -f 1) -lt $num_users		
-			do
-				:
-			done
-		fi
 
+		#wait to write in the file
+		while test $(wc -l /tmp/pid_dbus | cut -d " " -f 1) -lt $num_users		
+		do
+			:
+		done
 
 		#Set pid_dbus file in root read-only mode
 		chmod 400 /tmp/pid_dbus
