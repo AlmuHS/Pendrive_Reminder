@@ -30,8 +30,16 @@ userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" subs
 
 if test -z $userdisplay
 then
+	user="$(who | cut -d " " -f 1 | uniq)"
 	disp=$(grep DISPLAY $INSTALL_DIR/var | cut -d "=" -f 2)
-	userdisplay="$(who | cut -d " " -f 1 | uniq);$disp"	 
+
+	userdisplay=""
+
+	for u in $user
+	do
+		userdisplay="$userdisplay $u;$disp"
+	done
+		 
 fi
 
 #Get polkit version
