@@ -60,7 +60,7 @@ then
 	then
 		#creates a temporary file, to save pid of dbus clients
 		touch /tmp/pid_dbus
-		chmod 406 /tmp/pid_dbus
+		chmod 666 /tmp/pid_dbus
 	fi
 
 	#for each user, show notification and (only in polkit >= 106) launch dbus client 
@@ -101,11 +101,20 @@ then
 		#Get num of active users, to wait until all writes are done
 		num_users=${#userdisplay[@]}
 
-		#wait to write in the file
-		while test $(wc -l /tmp/pid_dbus | cut -d " " -f 1) -lt $num_users
-		do
-			:
-		done
+		if test $num_users -eq 1
+		then
+			while ! test -s /tmp/pid_dbus		
+			do
+				:
+			done			
+		else
+			#wait to write in the file
+			while test $(wc -l /tmp/pid_dbus | cut -d " " -f 1) -le $num_users		
+			do
+				:
+			done
+		fi
+
 
 		#Set pid_dbus file in root read-only mode
 		chmod 400 /tmp/pid_dbus
