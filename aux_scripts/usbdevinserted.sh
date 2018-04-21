@@ -95,11 +95,9 @@ then
 
 	if test $polkit_version -ge 106
 	then
-	
 		#Get num of active users, to wait until all writes are done
 		userdisplay=( $userdisplay )
 		num_users=${#userdisplay[@]}
-
 
 		#wait to write in the file
 		while test $(wc -l /tmp/pid_dbus | cut -d " " -f 1) -lt $num_users		
