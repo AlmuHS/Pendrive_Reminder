@@ -42,4 +42,9 @@ else
 		rm /etc/polkit-1/localauthority/50-local.d/50-inhibit-shutdown.pkla 2>/dev/null
 		crontab -l 2>/dev/null | grep -v '/usr/bin/pendrive-reminder/check_shutforced.sh'  | crontab -
 	fi
+
+	if test -f /tmp/usbdevinfo
+	then
+		rm /tmp/usbdevinfo
+	fi
 fi
