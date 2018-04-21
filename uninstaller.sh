@@ -1,13 +1,16 @@
 #!/bin/bash
 
 #Remove scripts folder
-rm -r /usr/bin/pendrive-reminder
+if test -d /usr/bin/pendrive-reminder
+then
+	rm -rf /usr/bin/pendrive-reminder
+fi
 
 #Remove udev rules
 udev_files=$(ls udev-rules)
 
 cd /etc/udev/rules.d/
-rm $udev_files
+rm $udev_files 2>/dev/null
 
 #Remove locale files
 find /usr/share/locale/ -name "preminder*" -delete
