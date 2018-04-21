@@ -62,14 +62,18 @@ El cliente dbus será lanzado por el script [`usbdevinserted.sh`](https://github
 
 
 ## Comportamiento
-El comportamiento de la herramienta dependerá de la versión de polkit usada por el sistema, y de la distribución y entorno de escritorio donde se ejecute
+El comportamiento de la herramienta dependerá de la versión de polkit usada por el sistema, y de la distribución y entorno de escritorio donde se ejecute.
+
+Al conectar y desconectar el pendrive, se emitirá una notificación indicando que el bloqueo de apagado se ha activado o desactivado.
 
 Según el entorno de escritorio y la distribución, la opción de apagado desaparecerá del menú de apagado, o simplemente se mantendrá pero sin asociarse a ninguna acción (al pulsarse no hace nada).
 
 Además, si la versión de polkit es >= 0.106, al abrir el menú de apagado con el pendrive conectado, se enviará una notificación indicando que debe desconectar el pendrive para desbloquear el apagado (solo en polkit >= 0.106)
 
-En todos los casos, el sistema volverá a la normalidad, desbloqueando el apagado, al desconectar el pendrive.
-Al conectar y desconectar el pendrive, se emitirá una notificación indicando que el bloqueo de apagado se ha activado o desactivado
+El bloqueo del apagado se mantendrá mientras haya algún pendrive conectado al equipo.
+
+En todos los casos, el sistema volverá a la normalidad, desbloqueando el apagado, al desconectar todos los pendrives.
+
 
 ### Localización
 
