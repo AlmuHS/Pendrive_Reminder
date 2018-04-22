@@ -21,13 +21,10 @@ then
 	#Path to installation directory
 	INSTALL_DIR="/usr/bin/pendrive-reminder"
 
-	#Get system language
-	LANG=$(grep LANG $INSTALL_DIR/var | cut -d "=" -f 2)
-
 	#Export env variables for gettext
 	export TEXTDOMAIN="preminder"
-	export TEXTDOMAINDIR=/usr/share/locale
-	export LANG=$LANG
+	export TEXTDOMAINDIR="/usr/share/locale"
+	export LANG=$(grep LANG $INSTALL_DIR/var | cut -d "=" -f 2)
 
 	#Get list of users with graphic session started, and their active display 
 	userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq)
@@ -41,10 +38,6 @@ then
 	#Get polkit version
 	polkit_version=$(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2)
 
-	#get message translation
-	export message1=$(gettext "Shutdown lock enabled. ")
-	export message2=$(gettext "The shutdown will be unlocked when pendrive is disconnected")
-
 	if test $polkit_version -ge 106
 	then
 		#creates a temporary file, to save pid of dbus clients
@@ -57,6 +50,10 @@ then
 		cp $INSTALL_DIR/50-inhibit-shutdown.pkla /etc/polkit-1/localauthority/50-local.d/
 		service polkit restart	
 	fi
+
+	#get message translation
+	export message1=$(gettext "Shutdown lock enabled. ")
+	export message2=$(gettext "The shutdown will be unlocked when pendrive is disconnected")
 
 	#for each user, show notification and (only in polkit >= 106) launch dbus client 
 	for element in $userdisplay
