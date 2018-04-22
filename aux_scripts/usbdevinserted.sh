@@ -14,30 +14,30 @@
 DEVPATH=$1
 echo $DEVPATH >> /tmp/usbdevinfo
 
-#Path to installation directory
-INSTALL_DIR="/usr/bin/pendrive-reminder"
-
-#Get system language
-LANG=$(grep LANG $INSTALL_DIR/var | cut -d "=" -f 2)
-
-#Export env variables for gettext
-export TEXTDOMAIN="preminder"
-export TEXTDOMAINDIR=/usr/share/locale
-export LANG=$LANG
-
-#Get list of users with graphic session started, and their active display 
-userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq)
-
-if test -z $userdisplay
-then
-	disp=$(grep DISPLAY $INSTALL_DIR/var | cut -d "=" -f 2)
-	userdisplay=$(who | cut -d " " -f 1 | gawk -v var=$disp '{print $1 ";" var}')
-fi
-
 
 #When first usb device is connected
 if test $(wc -l /tmp/usbdevinfo | cut -d " " -f 1) -eq 1
-then	
+then
+	#Path to installation directory
+	INSTALL_DIR="/usr/bin/pendrive-reminder"
+
+	#Get system language
+	LANG=$(grep LANG $INSTALL_DIR/var | cut -d "=" -f 2)
+
+	#Export env variables for gettext
+	export TEXTDOMAIN="preminder"
+	export TEXTDOMAINDIR=/usr/share/locale
+	export LANG=$LANG
+
+	#Get list of users with graphic session started, and their active display 
+	userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq)
+
+	if test -z $userdisplay
+	then
+		disp=$(grep DISPLAY $INSTALL_DIR/var | cut -d "=" -f 2)
+		userdisplay=$(who | cut -d " " -f 1 | gawk -v var=$disp '{print $1 ";" var}')
+	fi
+	
 	#Get polkit version
 	polkit_version=$(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2)
 
