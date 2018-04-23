@@ -19,25 +19,6 @@ INSTALL_DIR="/usr/bin/pendrive-reminder"
 #Path to USB watchdog file
 filepath="/tmp/usbdevinfo"
 
-#Get list of users with graphic session started, and their active display 
-userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq) 
-
-if test -z $userdisplay
-then
-	disp=$(grep DISPLAY $INSTALL_DIR/var | cut -d "=" -f 2)
-	userdisplay="$(who | cut -d " " -f 1 | uniq);$disp" 
-fi
-
-polkit_version=$(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2)
-
-
-#Get system language
-LANG=$(grep LANG $INSTALL_DIR/var | cut -d "=" -f 2)
-
-#Export env variables for gettext
-export TEXTDOMAIN="preminder"
-export TEXTDOMAINDIR=/usr/share/locale
-export LANG=$LANG
 
 #if watchdog file exists
 if test -f $filepath
@@ -50,6 +31,9 @@ then
 	then
 		#if file is empty, remove it
 		rm -f $filepath
+
+
+		polkit_version=$(pkaction --version | cut -d " " -f 3 | cut -d "." -f 2)
 
 
 		#if polkit version >= 106, kill all dbus clients
@@ -65,9 +49,28 @@ then
 			rm /tmp/pid_dbus
 		fi
 
+		#Get system language
+		LANG=$(grep LANG $INSTALL_DIR/var | cut -d "=" -f 2)
+
+		#Export env variables for gettext
+		export TEXTDOMAIN="preminder"
+		export TEXTDOMAINDIR=/usr/share/locale
+		export LANG=$LANG
+
 		#Get message translation
 		export message1=$(gettext "Shutdown lock disabled. ")
 		export message2=$(gettext "Now you can shutdown your computer")
+
+
+		#Get list of users with graphic session started, and their active display 
+		userdisplay=$(who | gawk '/\(:[[:digit:]](\.[[:digit:]])?\)/ { print $1 ";" substr($NF, 2, length($NF)-2) }' | uniq) 
+
+		if test -z $userdisplay
+		then
+			disp=$(grep DISPLAY $INSTALL_DIR/var | cut -d "=" -f 2)
+			userdisplay="$(who | cut -d " " -f 1 | uniq);$disp" 
+		fi
+
 
 		#Notify all connected users
 		for element in $userdisplay
