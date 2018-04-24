@@ -29,8 +29,10 @@ linguas.install()
 
 def msg_handler(*args,**keywords):
     try:
+        #Read username from dbus path
         user = str(keywords['path'][15:])
-        print(user)
+
+        #Only show notification is user is the same than username
         if user == username:
             #show notification to desktop
             Notify.init('Pendrive Reminder')
