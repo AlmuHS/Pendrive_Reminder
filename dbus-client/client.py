@@ -8,12 +8,16 @@ from gi.repository import Notify
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
 import gettext
+import sys
 
 
 #Start dbus mainloop
 dbus_loop = DBusGMainLoop(set_as_default=True)
 bus = dbus.SystemBus(mainloop=dbus_loop)
 loop = GLib.MainLoop()
+
+#Get username
+username = str(sys.argv[1])
 
 #Install locale support
 try:
@@ -25,10 +29,13 @@ linguas.install()
 
 def msg_handler(*args,**keywords):
     try:
-        #show notification to desktop
-        Notify.init('Pendrive Reminder')
-        notify = Notify.Notification.new('Pendrive Reminder', _('Shutdown lock enabled. Disconnect pendrive to enable shutdown'))
-        notify.show()
+        user = str(keywords['path'][15:])
+        print(user)
+        if user == username:
+            #show notification to desktop
+            Notify.init('Pendrive Reminder')
+            notify = Notify.Notification.new('Pendrive Reminder', _('Shutdown lock enabled. Disconnect pendrive to enable shutdown'))
+            notify.show()
     except:
         pass
 

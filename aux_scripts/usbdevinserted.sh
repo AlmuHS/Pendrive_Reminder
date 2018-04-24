@@ -75,7 +75,7 @@ then
 			#Creates a temporary file, with commands to launch in the task 
 			echo "export DISPLAY=$DISPLAY" > at_task
 			echo "export LANG=$LANG" >> at_task
-			echo '/usr/bin/pendrive-reminder/dbus-client/client.py &' >> at_task
+			echo "/usr/bin/pendrive-reminder/dbus-client/client.py $user &" >> at_task
 
 			#creates another temporary file, to save pid of dbus clients
 			echo 'echo $! >> /tmp/pid_dbus' >> at_task
