@@ -106,6 +106,9 @@ En el caso de las distribuciones que usan polkit >= 0.106, también hay que inst
     
         `sudo apt install libnotify-bin policykit-1`
 	
+	  \* **NOTA**: En Debian es posible instalar polkit 0.114, desde el repositorio experimental, siguiendo estas [instrucciones](https://github.com/AlmuHS/Pendrive_Reminder/wiki/Instalar-Polkit-0.114-en-Debian)
+
+	
     - **Ubuntu 17.10**:
     
        `sudo apt install libnotify-bin policykit-1 udev`        
@@ -121,9 +124,6 @@ En el caso de las distribuciones que usan polkit >= 0.106, también hay que inst
     - **Gentoo**:
  
       `sudo emerge -a dev-python/dbus-python dev-python/pygobject sys-process/at x11-libs/libnotify`
-
-\* **NOTA**: En Debian es posible instalar polkit 0.114, desde el repositorio experimental, siguiendo estas [instrucciones](https://github.com/AlmuHS/Pendrive_Reminder/wiki/Instalar-Polkit-0.114-en-Debian)
-
 
 - Para descargar, se puede usar `git` con el comando:
 
