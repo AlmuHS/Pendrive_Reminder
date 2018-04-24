@@ -7,7 +7,7 @@
 #The user will receive message to a dbus client connected org.preminder service
 
 #send message to client using dbus system bus
-dbus-send --system /org/preminder org.preminder.App
+dbus-send --system /org/preminder/$1 org.preminder.App
 
 exit 0
 
