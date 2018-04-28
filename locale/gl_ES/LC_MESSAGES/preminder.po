@@ -1,0 +1,19 @@
+#: dbus-client/client.py:45
+msgid "Shutdown lock enabled. Disconnect pendrive to enable shutdown"
+msgstr "Bloqueo de apagado activado. Desactivar o pendrive para activar o apagado"
+
+#: aux_scripts/usbdevinserted.sh:57
+msgid "Shutdown lock enabled. "
+msgstr "Bloqueo de apagado habilitada"
+
+#: aux_scripts/usbdevinserted.sh:58
+msgid "The shutdown will be unlocked when pendrive is disconnected"
+msgstr "O peche desbloquearase cando se desconecte pendrive"
+
+#: aux_scripts/usbdevgone.sh:68
+msgid "Shutdown lock disabled. "
+msgstr "Bloqueo de apagado deshabilitado"
+
+#: aux_scripts/usbdevgone.sh:69
+msgid "Now you can shutdown your computer"
+msgstr "Agora podes apagar a túa computadora"
