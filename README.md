@@ -84,6 +84,7 @@ Los idiomas actualmente soportados son:
 - Inglés
 - Francés
 - Español
+- Gallego
 - Neerlandés
 - Portugués
 - Italiano
