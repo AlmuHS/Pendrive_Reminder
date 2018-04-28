@@ -68,7 +68,7 @@ Al conectar y desconectar el pendrive, se emitirá una notificación indicando q
 
 Según el entorno de escritorio y la distribución, la opción de apagado desaparecerá del menú de apagado, o simplemente se mantendrá pero sin asociarse a ninguna acción (al pulsarse no hace nada).
 
-Además, si la versión de polkit es >= 0.106, al abrir el menú de apagado con el pendrive conectado, se enviará una notificación indicando que debe desconectar el pendrive para desbloquear el apagado (solo en polkit >= 0.106)
+Además, si la versión de polkit es >= 0.106, al abrir el menú de apagado con el pendrive conectado, se enviará una notificación indicando que debe desconectar el pendrive para desbloquear el apagado
 
 El bloqueo del apagado se mantendrá mientras haya algún pendrive conectado al equipo.
 
