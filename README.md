@@ -88,6 +88,7 @@ Los idiomas actualmente soportados son:
 - Neerlandés
 - Portugués
 - Italiano
+- Catalán
 
 ### Accesibilidad
 
@@ -195,3 +196,4 @@ Las dependencias, instaladas de forma previa a la instalación, NO serán elimin
 - [Foxandxss](https://github.com/Foxandxss): Sugerencias y ayuda en localización. Traducción al neerlandés y portugués
 - [delightfulagony](https://github.com/delightfulagony), [RNogales94](https://github.com/RNogales94): Traducción al francés
 - [Noel](https://github.com/BreoganGal): Traducción al gallego
+- [DrGus](https://github.com/DrGus): Traducción al catalán

@@ -1,0 +1,33 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ca\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#: dbus-client/client.py:45
+msgid "Shutdown lock enabled. Disconnect pendrive to enable shutdown"
+msgstr "Bloqueig d'apagat activat. Desactiva el pendrive per habilitar l'apagat"
+
+#: aux_scripts/usbdevinserted.sh:57
+msgid "Shutdown lock enabled. "
+msgstr "Bloqueig d'apagat activat. "
+
+#: aux_scripts/usbdevinserted.sh:58
+msgid "The shutdown will be unlocked when pendrive is disconnected"
+msgstr "L'apagat es desbloquejarà quan el pendrive es desconnecti"
+
+#: aux_scripts/usbdevgone.sh:68
+msgid "Shutdown lock disabled. "
+msgstr "Bloqueig d'apagat deshabilitat. "
+
+#: aux_scripts/usbdevgone.sh:69
+msgid "Now you can shutdown your computer"
+msgstr "Ara ja pots apagar l'equip"
